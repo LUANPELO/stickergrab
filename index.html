@@ -214,32 +214,71 @@
     .tutorial-panel.active { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: center; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* phone frame */
+    /* ── PHONE DEVICE (premium) ─────────────────────────── */
     .phone-wrap { display: flex; justify-content: center; }
-    .phone-frame {
-      width: 168px; height: 336px; border-radius: 36px;
-      background: #0a0a0f; border: 3px solid #2a2a3a;
-      position: relative; box-shadow: 0 24px 64px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.06);
-      overflow: hidden; flex-shrink: 0;
+    .phone-device {
+      width: 168px; height: 344px; border-radius: 42px;
+      background: linear-gradient(155deg, #2d2d42 0%, #0d0d16 28%, #141422 65%, #25253c 100%);
+      position: relative; flex-shrink: 0;
+      box-shadow:
+        0 0 0 1.5px rgba(255,255,255,.1),
+        inset 0 0 0 1px rgba(0,0,0,.75),
+        inset 0 1px 0 rgba(255,255,255,.11),
+        0 40px 90px rgba(0,0,0,.78),
+        0 10px 28px rgba(0,0,0,.5);
     }
-    .phone-pill {
-      position: absolute; top: 9px; left: 50%; transform: translateX(-50%);
-      width: 44px; height: 7px; background: #1a1a28; border-radius: 4px; z-index: 10;
+    /* Volume buttons – left (box-shadow = second button) */
+    .phone-device::before {
+      content: ''; position: absolute; left: -5px; top: 76px;
+      width: 5px; height: 26px; border-radius: 3px 0 0 3px;
+      background: linear-gradient(90deg, #1a1a28, #26263a);
+      box-shadow: 0 36px 0 #1a1a28, inset -1px 0 1px rgba(255,255,255,.07);
+    }
+    /* Power button – right */
+    .phone-device::after {
+      content: ''; position: absolute; right: -5px; top: 102px;
+      width: 5px; height: 38px; border-radius: 0 3px 3px 0;
+      background: linear-gradient(90deg, #26263a, #1a1a28);
+      box-shadow: inset 1px 0 1px rgba(255,255,255,.07);
+    }
+    /* Inner bezel + screen */
+    .phone-bezel {
+      position: absolute; top: 8px; left: 8px; right: 8px; bottom: 8px;
+      border-radius: 34px; background: #000; overflow: hidden;
+    }
+    .phone-camera {
+      position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
+      width: 9px; height: 9px; border-radius: 50%;
+      background: #050508; border: 1px solid #1c1c2a; z-index: 20;
+    }
+    .phone-home {
+      position: absolute; bottom: 7px; left: 50%; transform: translateX(-50%);
+      width: 50px; height: 4px; border-radius: 2px;
+      background: rgba(255,255,255,.3); z-index: 20; pointer-events: none;
     }
     .phone-screen {
       position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: 33px; overflow: hidden;
-      display: flex; flex-direction: column;
+      display: flex; flex-direction: column; overflow: hidden;
     }
-    /* Android status bar */
+    /* Status bar */
     .android-bar {
       height: 28px; background: #000; display: flex; align-items: center;
-      justify-content: space-between; padding: 0 12px 0 12px; flex-shrink: 0;
-      padding-top: 6px;
+      justify-content: space-between; padding: 6px 12px 0; flex-shrink: 0;
     }
     .android-bar-time { font-size: 9px; font-weight: 700; color: #fff; }
-    .android-bar-icons { display: flex; gap: 3px; align-items: center; }
-    .android-bar-icons span { font-size: 8px; color: #fff; }
+    .android-bar-icons { display: flex; gap: 4px; align-items: center; }
+    .android-bar-icons span { font-size: 7px; color: #fff; line-height: 1; }
+    .phone-batt {
+      display: inline-flex; align-items: center; position: relative;
+      width: 14px; height: 7px; border: 1.5px solid rgba(255,255,255,.55);
+      border-radius: 2px; padding: 1px;
+    }
+    .phone-batt::after {
+      content: ''; position: absolute; right: -3px; top: 50%;
+      transform: translateY(-50%); width: 2px; height: 4px;
+      background: rgba(255,255,255,.45); border-radius: 0 1px 1px 0;
+    }
+    .phone-batt-fill { height: 100%; width: 70%; background: #4ade80; border-radius: 1px; }
 
     /* step 1 — Chrome download */
     .s1-body {
@@ -260,9 +299,9 @@
     }
     .s1-hero-mini {
       width: 36px; height: 36px; border-radius: 9px;
-      background: linear-gradient(135deg, #6C63FF, #8B85FF);
-      display: flex; align-items: center; justify-content: center; font-size: 18px;
+      overflow: hidden; flex-shrink: 0;
     }
+    .s1-hero-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .s1-title-mini { font-size: 7px; color: #aaa; font-weight: 600; }
     .s1-dl-bar {
       background: #292a2d; border-top: 1px solid #444;
@@ -321,9 +360,9 @@
     .s3-dialog-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
     .s3-app-icon {
       width: 32px; height: 32px; border-radius: 9px;
-      background: linear-gradient(135deg, #6C63FF, #FF6B9D);
-      display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
+      overflow: hidden; flex-shrink: 0;
     }
+    .s3-app-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .s3-dialog-title { font-size: 9px; font-weight: 800; color: #fff; }
     .s3-dialog-sub { font-size: 7px; color: #888; margin-top: 1px; }
     .s3-perms { margin-bottom: 10px; }
@@ -363,7 +402,7 @@
       50%,100% { right: 2px; background: #fff; }
     }
     .s4-float-btn {
-      position: absolute; right: 12px; bottom: 60px;
+      position: absolute; right: 14px; bottom: 64px; z-index: 10;
       width: 32px; height: 32px; border-radius: 50%;
       background: var(--purple); box-shadow: 0 4px 16px rgba(108,99,255,.6);
       display: flex; align-items: center; justify-content: center;
@@ -440,7 +479,7 @@
         flex-shrink: 0;
       }
 
-      .phone-frame {
+      .phone-device {
         position: absolute;
         top: 0; left: 0;
         transform: scale(0.726);   /* 168×0.726 ≈ 122px */
@@ -465,7 +504,7 @@
     @media (max-width: 400px) {
       .tutorial-panel.active { grid-template-columns: 100px 1fr; gap: 10px; }
       .phone-wrap            { width: 100px; height: 195px; }
-      .phone-frame           { transform: scale(0.595); }
+      .phone-device          { transform: scale(0.595); }
     }
 
     /* ── SAFETY ──────────────────────────────────────── */
@@ -688,38 +727,34 @@
       <!-- ── STEP 1 ── -->
       <div class="tutorial-panel active" id="step-1">
         <div class="phone-wrap">
-          <div class="phone-frame">
-            <div class="phone-pill"></div>
-            <div class="phone-screen">
-              <!-- Android status bar -->
-              <div class="android-bar">
-                <span class="android-bar-time">9:41</span>
-                <div class="android-bar-icons">
-                  <span>▲</span><span>●●●●</span><span>🔋</span>
+          <div class="phone-device">
+            <div class="phone-bezel">
+              <div class="phone-camera"></div>
+              <div class="phone-screen">
+                <div class="android-bar">
+                  <span class="android-bar-time">9:41</span>
+                  <div class="android-bar-icons"><span>▂▄▆</span><span>▲</span><div class="phone-batt"><div class="phone-batt-fill"></div></div></div>
                 </div>
-              </div>
-              <!-- Chrome body -->
-              <div class="s1-body">
-                <div class="s1-chrome-bar">
-                  <span class="s1-back">‹</span>
-                  <div class="s1-url">
-                    <span>luanpelo.github.io/stickergrab</span>
+                <div class="s1-body">
+                  <div class="s1-chrome-bar">
+                    <span class="s1-back">‹</span>
+                    <div class="s1-url"><span>luanpelo.github.io/stickergrab</span></div>
+                  </div>
+                  <div class="s1-webpage">
+                    <div class="s1-hero-mini"><img src="assets/logo.png" alt="StickerGrab"></div>
+                    <span class="s1-title-mini">StickerGrab</span>
+                  </div>
+                  <div class="s1-dl-bar">
+                    <svg viewBox="0 0 16 16" width="11" height="11" fill="#4ade80" style="flex-shrink:0"><path d="M8 12L4 8h2.5V3h3v5H12L8 12z"/><rect x="3" y="13" width="10" height="1.5" rx=".75"/></svg>
+                    <div class="s1-dl-info">
+                      <div class="s1-dl-name">stickergrab-v1.0.0.apk</div>
+                      <div class="s1-dl-prog"><div class="s1-dl-fill"></div></div>
+                    </div>
+                    <span class="s1-dl-open">ABRIR</span>
                   </div>
                 </div>
-                <div class="s1-webpage">
-                  <div class="s1-hero-mini">🦎</div>
-                  <span class="s1-title-mini">StickerGrab</span>
-                </div>
-                <!-- Download bar at bottom -->
-                <div class="s1-dl-bar">
-                  <span class="s1-dl-icon">📥</span>
-                  <div class="s1-dl-info">
-                    <div class="s1-dl-name">stickergrab-v1.0.0.apk</div>
-                    <div class="s1-dl-prog"><div class="s1-dl-fill"></div></div>
-                  </div>
-                  <span class="s1-dl-open">ABRIR</span>
-                </div>
               </div>
+              <div class="phone-home"></div>
             </div>
           </div>
         </div>
@@ -745,43 +780,46 @@
       <!-- ── STEP 2 ── -->
       <div class="tutorial-panel" id="step-2">
         <div class="phone-wrap">
-          <div class="phone-frame">
-            <div class="phone-pill"></div>
-            <div class="phone-screen">
-              <div class="android-bar">
-                <span class="android-bar-time">9:42</span>
-                <div class="android-bar-icons"><span>▲</span><span>●●●●</span><span>🔋</span></div>
-              </div>
-              <div class="s2-body">
-                <div class="s2-header">
-                  <span class="s2-back-arr">‹</span>
-                  <span class="s2-title" data-es="Instalar apps desconocidas" data-en="Install unknown apps">Instalar apps desconocidas</span>
+          <div class="phone-device">
+            <div class="phone-bezel">
+              <div class="phone-camera"></div>
+              <div class="phone-screen">
+                <div class="android-bar">
+                  <span class="android-bar-time">9:42</span>
+                  <div class="android-bar-icons"><span>▂▄▆</span><span>▲</span><div class="phone-batt"><div class="phone-batt-fill"></div></div></div>
                 </div>
-                <div class="s2-list">
-                  <div class="s2-item" style="background:rgba(108,99,255,.06)">
-                    <div class="s2-item-left">
-                      <span class="s2-item-title">Chrome</span>
-                      <span class="s2-item-sub" data-es="Se permite instalar desde aquí" data-en="Allowed to install from here">Se permite instalar desde aquí</span>
-                    </div>
-                    <div class="s2-toggle on"></div>
+                <div class="s2-body">
+                  <div class="s2-header">
+                    <span class="s2-back-arr">‹</span>
+                    <span class="s2-title" data-es="Instalar apps desconocidas" data-en="Install unknown apps">Instalar apps desconocidas</span>
                   </div>
-                  <div class="s2-item">
-                    <div class="s2-item-left">
-                      <span class="s2-item-title">Samsung Browser</span>
-                      <span class="s2-item-sub" data-es="No permitido" data-en="Not allowed">No permitido</span>
+                  <div class="s2-list">
+                    <div class="s2-item" style="background:rgba(108,99,255,.06)">
+                      <div class="s2-item-left">
+                        <span class="s2-item-title">Chrome</span>
+                        <span class="s2-item-sub" data-es="Se permite instalar desde aquí" data-en="Allowed to install from here">Se permite instalar desde aquí</span>
+                      </div>
+                      <div class="s2-toggle on"></div>
                     </div>
-                    <div class="s2-toggle off"></div>
-                  </div>
-                  <div class="s2-item">
-                    <div class="s2-item-left">
-                      <span class="s2-item-title">Files</span>
-                      <span class="s2-item-sub" data-es="No permitido" data-en="Not allowed">No permitido</span>
+                    <div class="s2-item">
+                      <div class="s2-item-left">
+                        <span class="s2-item-title">Samsung Browser</span>
+                        <span class="s2-item-sub" data-es="No permitido" data-en="Not allowed">No permitido</span>
+                      </div>
+                      <div class="s2-toggle off"></div>
                     </div>
-                    <div class="s2-toggle off"></div>
+                    <div class="s2-item">
+                      <div class="s2-item-left">
+                        <span class="s2-item-title">Files</span>
+                        <span class="s2-item-sub" data-es="No permitido" data-en="Not allowed">No permitido</span>
+                      </div>
+                      <div class="s2-toggle off"></div>
+                    </div>
                   </div>
+                  <div class="s2-info-box" data-es="Activar esto permite que esta app instale otras aplicaciones. Solo actívalo para apps de confianza." data-en="Enabling this allows this app to install other apps. Only enable it for trusted apps.">Activar esto permite que esta app instale otras aplicaciones. Solo actívalo para apps de confianza.</div>
                 </div>
-                <div class="s2-info-box" data-es="Activar esto permite que esta app instale otras aplicaciones. Solo actívalo para apps de confianza." data-en="Enabling this allows this app to install other apps. Only enable it for trusted apps.">Activar esto permite que esta app instale otras aplicaciones. Solo actívalo para apps de confianza.</div>
               </div>
+              <div class="phone-home"></div>
             </div>
           </div>
         </div>
@@ -807,34 +845,37 @@
       <!-- ── STEP 3 ── -->
       <div class="tutorial-panel" id="step-3">
         <div class="phone-wrap">
-          <div class="phone-frame">
-            <div class="phone-pill"></div>
-            <div class="phone-screen">
-              <div class="android-bar">
-                <span class="android-bar-time">9:43</span>
-                <div class="android-bar-icons"><span>▲</span><span>●●●●</span><span>🔋</span></div>
-              </div>
-              <div class="s3-body">
-                <div class="s3-bg"></div>
-                <div class="s3-dialog">
-                  <div class="s3-dialog-top">
-                    <div class="s3-app-icon">🦎</div>
-                    <div>
-                      <div class="s3-dialog-title" data-es="¿Instalar StickerGrab?" data-en="Install StickerGrab?">¿Instalar StickerGrab?</div>
-                      <div class="s3-dialog-sub" data-es="com.stickerplus.sticker_save" data-en="com.stickerplus.sticker_save">com.stickerplus.sticker_save</div>
+          <div class="phone-device">
+            <div class="phone-bezel">
+              <div class="phone-camera"></div>
+              <div class="phone-screen">
+                <div class="android-bar">
+                  <span class="android-bar-time">9:43</span>
+                  <div class="android-bar-icons"><span>▂▄▆</span><span>▲</span><div class="phone-batt"><div class="phone-batt-fill"></div></div></div>
+                </div>
+                <div class="s3-body">
+                  <div class="s3-bg"></div>
+                  <div class="s3-dialog">
+                    <div class="s3-dialog-top">
+                      <div class="s3-app-icon"><img src="assets/logo.png" alt="StickerGrab"></div>
+                      <div>
+                        <div class="s3-dialog-title" data-es="¿Instalar StickerGrab?" data-en="Install StickerGrab?">¿Instalar StickerGrab?</div>
+                        <div class="s3-dialog-sub" data-es="com.stickerplus.sticker_save" data-en="com.stickerplus.sticker_save">com.stickerplus.sticker_save</div>
+                      </div>
                     </div>
-                  </div>
-                  <div class="s3-perms">
-                    <div class="s3-perm"><div class="s3-perm-dot"></div><span class="s3-perm-text" data-es="Mostrar encima de otras apps" data-en="Display over other apps">Mostrar encima de otras apps</span></div>
-                    <div class="s3-perm"><div class="s3-perm-dot"></div><span class="s3-perm-text" data-es="Captura de pantalla" data-en="Screen capture">Captura de pantalla</span></div>
-                    <div class="s3-perm"><div class="s3-perm-dot"></div><span class="s3-perm-text" data-es="Almacenamiento" data-en="Storage">Almacenamiento</span></div>
-                  </div>
-                  <div class="s3-btns">
-                    <span class="s3-btn-cancel" data-es="CANCELAR" data-en="CANCEL">CANCELAR</span>
-                    <span class="s3-btn-install" data-es="INSTALAR" data-en="INSTALL">INSTALAR</span>
+                    <div class="s3-perms">
+                      <div class="s3-perm"><div class="s3-perm-dot"></div><span class="s3-perm-text" data-es="Mostrar encima de otras apps" data-en="Display over other apps">Mostrar encima de otras apps</span></div>
+                      <div class="s3-perm"><div class="s3-perm-dot"></div><span class="s3-perm-text" data-es="Captura de pantalla" data-en="Screen capture">Captura de pantalla</span></div>
+                      <div class="s3-perm"><div class="s3-perm-dot"></div><span class="s3-perm-text" data-es="Almacenamiento" data-en="Storage">Almacenamiento</span></div>
+                    </div>
+                    <div class="s3-btns">
+                      <span class="s3-btn-cancel" data-es="CANCELAR" data-en="CANCEL">CANCELAR</span>
+                      <span class="s3-btn-install" data-es="INSTALAR" data-en="INSTALL">INSTALAR</span>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="phone-home"></div>
             </div>
           </div>
         </div>
@@ -860,34 +901,35 @@
       <!-- ── STEP 4 ── -->
       <div class="tutorial-panel" id="step-4">
         <div class="phone-wrap">
-          <div class="phone-frame">
-            <div class="phone-pill"></div>
-            <div class="phone-screen">
-              <div class="android-bar">
-                <span class="android-bar-time">9:44</span>
-                <div class="android-bar-icons"><span>▲</span><span>●●●●</span><span>🔋</span></div>
-              </div>
-              <div class="s4-body">
-                <div class="s4-header">
-                  <span class="s4-header-title">StickerGrab</span>
+          <div class="phone-device">
+            <div class="phone-bezel">
+              <div class="phone-camera"></div>
+              <div class="phone-screen">
+                <div class="android-bar">
+                  <span class="android-bar-time">9:44</span>
+                  <div class="android-bar-icons"><span>▂▄▆</span><span>▲</span><div class="phone-batt"><div class="phone-batt-fill"></div></div></div>
                 </div>
-                <!-- Overlay permission card -->
-                <div class="s4-perm-card">
-                  <div class="s4-perm-title" data-es="Permiso de superposición" data-en="Overlay permission">Permiso de superposición</div>
-                  <div class="s4-perm-desc" data-es="StickerGrab necesita mostrarse encima de TikTok e Instagram para que el botón flotante funcione." data-en="StickerGrab needs to show over TikTok and Instagram for the floating button to work.">StickerGrab necesita mostrarse encima de TikTok e Instagram para que el botón flotante funcione.</div>
-                  <div class="s4-perm-row">
-                    <span class="s4-perm-app">StickerGrab</span>
-                    <div class="s4-toggle"></div>
+                <div class="s4-body">
+                  <div class="s4-header">
+                    <span class="s4-header-title">StickerGrab</span>
+                  </div>
+                  <div class="s4-perm-card">
+                    <div class="s4-perm-title" data-es="Permiso de superposición" data-en="Overlay permission">Permiso de superposición</div>
+                    <div class="s4-perm-desc" data-es="StickerGrab necesita mostrarse encima de TikTok e Instagram para que el botón flotante funcione." data-en="StickerGrab needs to show over TikTok and Instagram for the floating button to work.">StickerGrab necesita mostrarse encima de TikTok e Instagram para que el botón flotante funcione.</div>
+                    <div class="s4-perm-row">
+                      <span class="s4-perm-app">StickerGrab</span>
+                      <div class="s4-toggle"></div>
+                    </div>
+                  </div>
+                  <div class="s4-perm-card">
+                    <div class="s4-perm-title" data-es="Captura de pantalla" data-en="Screen capture">Captura de pantalla</div>
+                    <div class="s4-perm-desc" data-es="Necesario para capturar los stickers. StickerGrab solo captura cuando tú lo solicitas." data-en="Needed to capture stickers. StickerGrab only captures when you request it.">Necesario para capturar los stickers. StickerGrab solo captura cuando tú lo solicitas.</div>
                   </div>
                 </div>
-                <!-- Screen capture card -->
-                <div class="s4-perm-card">
-                  <div class="s4-perm-title" data-es="Captura de pantalla" data-en="Screen capture">Captura de pantalla</div>
-                  <div class="s4-perm-desc" data-es="Necesario para capturar los stickers. StickerGrab solo captura cuando tú lo solicitas." data-en="Needed to capture stickers. StickerGrab only captures when you request it.">Necesario para capturar los stickers. StickerGrab solo captura cuando tú lo solicitas.</div>
-                </div>
               </div>
+              <div class="phone-home"></div>
             </div>
-            <!-- Floating button preview -->
+            <!-- Floating button – outside bezel so no clip -->
             <div class="s4-float-btn">⚡</div>
           </div>
         </div>
@@ -1017,26 +1059,30 @@
   async function loadCounter() {
     const el = document.getElementById('dlCount');
     const CACHE_KEY = 'sg_dl_count';
-    const TTL = 5 * 60 * 1000;
+    const TTL = 4 * 60 * 1000;
+    // Show stale cache immediately while re-fetching
+    let cached = null;
+    try { cached = JSON.parse(localStorage.getItem(CACHE_KEY)); } catch {}
+    if (cached) el.textContent = cached.val;
+    if (cached && Date.now() - cached.ts < TTL) return;
     try {
-      const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
-      if (cached && Date.now() - cached.ts < TTL) { el.textContent = cached.val; return; }
+      const ctrl = new AbortController();
+      const tid = setTimeout(() => ctrl.abort(), 7000);
       const r = await fetch('https://api.github.com/repos/LUANPELO/sticker_save/releases', {
-        headers: { 'Accept': 'application/vnd.github.v3+json' }
+        headers: { 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+        signal: ctrl.signal
       });
-      if (!r.ok) throw new Error('status ' + r.status);
-      const releases = await r.json();
-      if (!Array.isArray(releases)) throw new Error();
+      clearTimeout(tid);
+      if (!r.ok) throw new Error(r.status);
+      const data = await r.json();
       let total = 0;
-      releases.forEach(rel => {
-        (rel.assets || []).forEach(a => { total += (a.download_count || 0); });
-      });
-      const val = total > 0 ? total.toLocaleString() : '¡Sé el primero!';
-      localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), val }));
+      if (Array.isArray(data))
+        data.forEach(rel => (rel.assets || []).forEach(a => { total += a.download_count | 0; }));
+      const val = total.toLocaleString();
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), val })); } catch {}
       el.textContent = val;
     } catch {
-      const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
-      el.textContent = cached ? cached.val : '0';
+      if (!cached) el.textContent = '0';
     }
   }
   loadCounter();
