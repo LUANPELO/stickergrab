@@ -390,7 +390,15 @@
       border-radius: 12px; padding: 12px 16px;
       display: flex; gap: 10px; align-items: flex-start;
     }
-    .tip-box .tip-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+    .tip-box .tip-icon { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
+    /* logo flash al hacer click */
+    @keyframes logoSnap {
+      0%   { filter: brightness(1) scale(1); }
+      25%  { filter: brightness(0.5) scale(0.93); }
+      60%  { filter: brightness(1.6) scale(1.06); }
+      100% { filter: brightness(1) scale(1); }
+    }
+    .nav-logo img.snap { animation: logoSnap .28s ease; }
     .tip-box p { margin: 0; font-size: .88rem; color: var(--purple2); }
 
     .tutorial-nav { display: flex; align-items: center; gap: 12px; margin-top: 28px; }
@@ -403,7 +411,8 @@
     .tnav-btn:hover:not(:disabled) { border-color: var(--purple); color: var(--purple2); }
     .tnav-btn:disabled { opacity: .3; cursor: default; }
     .tnav-btn.primary { background: var(--purple); border-color: var(--purple); color: #fff; }
-    .tnav-btn.primary:hover { background: var(--purple2); }
+    .tnav-btn.primary:hover { background: #5a52e0; border-color: #5a52e0; color: #fff; }
+    .tnav-btn.primary:active { background: #4a43cc; color: #fff; }
     .tnav-dots { display: flex; gap: 6px; }
     .tnav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); transition: all .2s; }
     .tnav-dot.active { background: var(--purple); width: 20px; border-radius: 4px; }
@@ -442,7 +451,7 @@
       .tutorial-text p   { font-size: .72rem; line-height: 1.4; margin-bottom: 6px; }
       .tip-box           { padding: 5px 7px; gap: 5px; }
       .tip-box p         { font-size: .66rem; line-height: 1.3; }
-      .tip-box .tip-icon { font-size: 10px; margin-top: 1px; }
+      .tip-box .tip-icon { width: 12px; height: 12px; margin-top: 1px; }
       .tutorial-nav      { gap: 6px; margin-top: 8px; flex-wrap: nowrap; }
       .tnav-btn          { padding: 6px 9px; font-size: 11px; gap: 4px; }
       .tnav-dots         { gap: 4px; }
@@ -516,8 +525,8 @@
 
 <!-- ── NAVBAR ──────────────────────────────────────────────── -->
 <nav>
-  <a class="nav-logo" href="#">
-    <img src="assets/logo.png" alt="StickerGrab" />
+  <a class="nav-logo" href="#" onclick="snapLogo(this)">
+    <img src="assets/logo.png" alt="StickerGrab" id="navLogoImg" />
     <span>StickerGrab</span>
   </a>
   <div class="lang-toggle">
@@ -717,7 +726,7 @@
           <h3 data-es="Descarga el APK" data-en="Download the APK">Descarga el APK</h3>
           <p data-es="Toca el botón <strong>«Descargar APK Global»</strong> arriba en esta página. Chrome te pedirá confirmación — acepta. El archivo se descargará en tu carpeta <em>Descargas</em> en pocos segundos." data-en="Tap the <strong>«Download APK Global»</strong> button above on this page. Chrome will ask for confirmation — accept. The file will download to your <em>Downloads</em> folder in a few seconds.">Toca el botón <strong>«Descargar APK Global»</strong> arriba en esta página. Chrome te pedirá confirmación — acepta. El archivo se descargará en tu carpeta <em>Descargas</em> en pocos segundos.</p>
           <div class="tip-box">
-            <span class="tip-icon">💡</span>
+            <i data-lucide="lightbulb" class="tip-icon" style="color:#FFC850"></i>
             <p data-es="Si tu teléfono es Huawei o no tiene Play Store, descarga la <strong>APK Lite</strong> — funciona igual sin Google Services." data-en="If your phone is Huawei or doesn't have Play Store, download <strong>APK Lite</strong> — works the same without Google Services.">Si tu teléfono es Huawei o no tiene Play Store, descarga la <strong>APK Lite</strong> — funciona igual sin Google Services.</p>
           </div>
           <div class="tutorial-nav">
@@ -779,7 +788,7 @@
           <h3 data-es="Activa apps de fuentes externas" data-en="Enable apps from external sources">Activa apps de fuentes externas</h3>
           <p data-es="Android bloquea APKs externos por defecto. Ve a <strong>Ajustes → Seguridad → Instalar apps desconocidas</strong>, selecciona <strong>Chrome</strong> y activa el permiso." data-en="Android blocks external APKs by default. Go to <strong>Settings → Security → Install unknown apps</strong>, select <strong>Chrome</strong> and enable the permission.">Android bloquea APKs externos por defecto. Ve a <strong>Ajustes → Seguridad → Instalar apps desconocidas</strong>, selecciona <strong>Chrome</strong> y activa el permiso.</p>
           <div class="tip-box">
-            <span class="tip-icon">⚡</span>
+            <i data-lucide="zap" class="tip-icon" style="color:#8B85FF"></i>
             <p data-es="En Android 13 y 14, al tocar el APK descargado Android te lleva directo a esta pantalla — no tienes que buscarla tú mismo." data-en="On Android 13 and 14, tapping the downloaded APK takes you directly to this screen — you don't have to search for it.">En Android 13 y 14, al tocar el APK descargado Android te lleva directo a esta pantalla — no tienes que buscarla tú mismo.</p>
           </div>
           <div class="tutorial-nav">
@@ -832,7 +841,7 @@
           <h3 data-es="Instala la aplicación" data-en="Install the application">Instala la aplicación</h3>
           <p data-es="Abre el APK desde la barra de descargas de Chrome o desde tu carpeta <strong>Descargas</strong>. Android mostrará un diálogo de confirmación — toca <strong>INSTALAR</strong> y espera unos segundos." data-en="Open the APK from Chrome's download bar or from your <strong>Downloads</strong> folder. Android will show a confirmation dialog — tap <strong>INSTALL</strong> and wait a few seconds.">Abre el APK desde la barra de descargas de Chrome o desde tu carpeta <strong>Descargas</strong>. Android mostrará un diálogo de confirmación — toca <strong>INSTALAR</strong> y espera unos segundos.</p>
           <div class="tip-box">
-            <span class="tip-icon">🔒</span>
+            <i data-lucide="shield" class="tip-icon" style="color:#4ECDC4"></i>
             <p data-es="Si ves «Aplicación bloqueada por Play Protect», toca <strong>Más información → Instalar de todas formas</strong>. Es normal para APKs fuera de Play Store." data-en="If you see «App blocked by Play Protect», tap <strong>More info → Install anyway</strong>. This is normal for APKs outside Play Store.">Si ves «Aplicación bloqueada por Play Protect», toca <strong>Más información → Instalar de todas formas</strong>. Es normal para APKs fuera de Play Store.</p>
           </div>
           <div class="tutorial-nav">
@@ -885,7 +894,7 @@
           <h3 data-es="Concede los permisos" data-en="Grant the permissions">Concede los permisos</h3>
           <p data-es="Al abrir StickerGrab por primera vez, la app te guiará para activar dos permisos esenciales:<br><br>• <strong>Superposición (Overlay)</strong> — para que el botón flotante aparezca sobre TikTok e Instagram.<br>• <strong>Captura de pantalla</strong> — para tomar la foto del sticker cuando lo tocas." data-en="When you open StickerGrab for the first time, the app will guide you to enable two essential permissions:<br><br>• <strong>Overlay</strong> — so the floating button appears over TikTok and Instagram.<br>• <strong>Screen capture</strong> — to take a photo of the sticker when you tap it.">Al abrir StickerGrab por primera vez, la app te guiará para activar dos permisos esenciales:<br><br>• <strong>Superposición (Overlay)</strong> — para que el botón flotante aparezca sobre TikTok e Instagram.<br>• <strong>Captura de pantalla</strong> — para tomar la foto del sticker cuando lo tocas.</p>
           <div class="tip-box">
-            <span class="tip-icon">🎉</span>
+            <i data-lucide="sparkles" class="tip-icon" style="color:#FFC850"></i>
             <p data-es="¡Listo! Abre TikTok o Instagram, busca un sticker y toca el botón morado flotante para capturarlo." data-en="Done! Open TikTok or Instagram, find a sticker, and tap the floating purple button to capture it.">¡Listo! Abre TikTok o Instagram, busca un sticker y toca el botón morado flotante para capturarlo.</p>
           </div>
           <div class="tutorial-nav">
@@ -894,9 +903,10 @@
               <div class="tnav-dot done"></div><div class="tnav-dot done"></div>
               <div class="tnav-dot done"></div><div class="tnav-dot active"></div>
             </div>
-            <a class="tnav-btn primary" href="#" style="text-decoration:none"
+            <a class="tnav-btn primary" style="text-decoration:none"
                id="finalDownloadBtn"
-               href="https://github.com/LUANPELO/sticker_save/releases/latest/download/stickergrab-v1.0.0.apk">
+               href="https://github.com/LUANPELO/sticker_save/releases/download/v1.0.0/stickergrab-v1.0.0.apk"
+               download>
               <i data-lucide="download" style="width:15px;height:15px"></i>
               <span data-es="Descargar APK" data-en="Download APK">Descargar APK</span>
             </a>
@@ -978,6 +988,43 @@
 
 <script>
   lucide.createIcons();
+
+  // ── Sonido de cámara + flash al tocar el logo ─────────────
+  function playCameraSound() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const snapLen = Math.floor(ctx.sampleRate * 0.05);
+      const snapBuf = ctx.createBuffer(1, snapLen, ctx.sampleRate);
+      const snapData = snapBuf.getChannelData(0);
+      for (let i = 0; i < snapLen; i++)
+        snapData[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.008));
+      const snap = ctx.createBufferSource();
+      snap.buffer = snapBuf;
+      const gSnap = ctx.createGain();
+      gSnap.gain.setValueAtTime(0.55, ctx.currentTime);
+      gSnap.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+      snap.connect(gSnap); gSnap.connect(ctx.destination);
+      const osc = ctx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(900, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 0.09);
+      const gOsc = ctx.createGain();
+      gOsc.gain.setValueAtTime(0.28, ctx.currentTime);
+      gOsc.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.11);
+      osc.connect(gOsc); gOsc.connect(ctx.destination);
+      snap.start(); snap.stop(ctx.currentTime + 0.07);
+      osc.start(); osc.stop(ctx.currentTime + 0.12);
+    } catch(e) {}
+  }
+
+  function snapLogo(el) {
+    playCameraSound();
+    const img = el.querySelector('img');
+    img.classList.remove('snap');
+    void img.offsetWidth;
+    img.classList.add('snap');
+    img.addEventListener('animationend', () => img.classList.remove('snap'), { once: true });
+  }
 
   // ── Language ──────────────────────────────────────────────
   const LANG_KEY = 'sg_lang';
