@@ -408,9 +408,42 @@
     .tnav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); transition: all .2s; }
     .tnav-dot.active { background: var(--purple); width: 20px; border-radius: 4px; }
 
+    /* ── MOBILE TUTORIAL — mantiene 2 col con teléfono escalado ── */
     @media (max-width: 700px) {
-      .tutorial-panel.active { grid-template-columns: 1fr; }
-      .phone-wrap { order: -1; }
+      .tutorial-panel.active {
+        grid-template-columns: 108px 1fr;
+        gap: 14px;
+        align-items: start;
+      }
+      /* El phone-wrap actúa de caja contenedora a tamaño real visual (63% de 168×336) */
+      .phone-wrap {
+        width: 108px;
+        height: 212px;
+        overflow: visible;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .phone-frame {
+        transform: scale(0.63);
+        transform-origin: top left;
+        position: absolute;
+        top: 0; left: 0;
+      }
+      .tutorial-text h3      { font-size: .95rem; margin-bottom: 8px; }
+      .tutorial-text p       { font-size: .8rem; line-height: 1.6; margin-bottom: 10px; }
+      .tutorial-step-num     { width: 30px; height: 30px; font-size: 14px; margin-bottom: 8px; }
+      .tip-box               { padding: 8px 10px; gap: 7px; }
+      .tip-box p             { font-size: .76rem; }
+      .tip-box .tip-icon     { font-size: 14px; }
+      .tutorial-nav          { gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+      .tnav-btn              { padding: 8px 12px; font-size: 12px; }
+      .tnav-dots             { gap: 5px; }
+    }
+
+    @media (max-width: 420px) {
+      .tutorial-panel.active { grid-template-columns: 90px 1fr; }
+      .phone-wrap            { width: 90px; height: 178px; }
+      .phone-frame           { transform: scale(0.53); }
     }
 
     /* ── SAFETY ──────────────────────────────────────── */
