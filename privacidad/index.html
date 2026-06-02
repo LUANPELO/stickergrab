@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidad – StickerGrab</title>
+  <meta name="description" content="Política de privacidad de StickerGrab. Cómo recopilamos, usamos y protegemos tu información." />
+  <link rel="icon" type="image/png" href="../assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --bg:      #0D0D14;
+      --surface: #13131F;
+      --card:    #1A1A2E;
+      --border:  #2A2A40;
+      --purple:  #6C63FF;
+      --purple2: #8B85FF;
+      --teal:    #4ECDC4;
+      --text:    #E8E8F0;
+      --muted:   #888899;
+      --radius:  16px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 32px;
+      background: rgba(13,13,20,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { width: 32px; height: 32px; border-radius: 8px; }
+    .nav-logo span { font-weight: 700; font-size: 17px; color: var(--text); }
+    .lang-toggle { display: flex; gap: 4px; background: var(--card); border-radius: 10px; padding: 4px; }
+    .lang-btn {
+      padding: 5px 13px; border-radius: 7px; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      background: transparent; color: var(--muted); transition: all .2s;
+    }
+    .lang-btn.active { background: var(--purple); color: #fff; }
+
+    /* HEADER */
+    .page-header {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 60px 24px 50px; text-align: center;
+    }
+    .page-header .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(78,205,196,.12); border: 1px solid rgba(78,205,196,.28);
+      color: var(--teal); border-radius: 50px; padding: 5px 15px;
+      font-size: 12px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .06em; margin-bottom: 18px;
+    }
+    .page-header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+      background: linear-gradient(135deg, #fff 30%, var(--teal) 70%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 12px;
+    }
+    .page-header p { color: var(--muted); font-size: .95rem; }
+
+    /* CONTENT */
+    .content-wrap { max-width: 820px; margin: 0 auto; padding: 60px 24px 80px; }
+
+    /* SUMMARY CARDS */
+    .summary-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px; margin-bottom: 52px;
+    }
+    .summary-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px 22px;
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .summary-card i { color: var(--teal); margin-top: 2px; flex-shrink: 0; }
+    .summary-card strong { display: block; font-size: .9rem; font-weight: 700; margin-bottom: 4px; }
+    .summary-card span { color: var(--muted); font-size: .83rem; line-height: 1.5; }
+
+    /* TOC */
+    .toc {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 32px; margin-bottom: 48px;
+    }
+    .toc h3 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 8px; }
+    .toc a { color: var(--purple2); text-decoration: none; font-size: .95rem; transition: color .15s; }
+    .toc a:hover { color: #fff; }
+
+    /* SECTIONS */
+    .section-block { margin-bottom: 52px; }
+    .section-block h2 {
+      font-size: 1.4rem; font-weight: 700; color: #fff;
+      margin-bottom: 16px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; background: rgba(78,205,196,.15);
+      color: var(--teal); border-radius: 8px; font-size: 13px;
+      font-weight: 800; flex-shrink: 0;
+    }
+    .section-block p { color: #bbbbc8; margin-bottom: 14px; font-size: .97rem; }
+    .section-block ul, .section-block ol { padding-left: 22px; color: #bbbbc8; font-size: .97rem; }
+    .section-block li { margin-bottom: 8px; }
+    .section-block strong { color: var(--text); }
+    .section-block a { color: var(--purple2); }
+
+    .highlight-box {
+      background: rgba(78,205,196,.07); border: 1px solid rgba(78,205,196,.22);
+      border-radius: 12px; padding: 16px 20px; margin: 16px 0;
+    }
+    .highlight-box p { margin: 0; color: #bbbbc8; font-size: .93rem; }
+
+    /* THIRD PARTY TABLE */
+    .tp-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: .9rem; }
+    .tp-table th {
+      background: rgba(108,99,255,.12); color: var(--purple2);
+      padding: 10px 14px; text-align: left; font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+    .tp-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: #bbbbc8; vertical-align: top; }
+    .tp-table tr:last-child td { border-bottom: none; }
+    .tp-table td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+    .tp-table a { color: var(--purple2); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 14px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--purple2); }
+    .footer-copy { color: var(--muted); font-size: .85rem; }
+
+    @media (max-width: 600px) {
+      nav { padding: 12px 16px; }
+      .tp-table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../">
+    <img src="../assets/logo.png" alt="StickerGrab" />
+    <span>StickerGrab</span>
+  </a>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="badge">
+    <i data-lucide="shield" style="width:13px;height:13px"></i>
+    <span data-es="Privacidad" data-en="Privacy">Privacidad</span>
+  </div>
+  <h1 data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</h1>
+  <p data-es="Última actualización: 2 de junio de 2025 · StickerGrab v1.0.0" data-en="Last updated: June 2, 2025 · StickerGrab v1.0.0">
+    Última actualización: 2 de junio de 2025 · StickerGrab v1.0.0
+  </p>
+</div>
+
+<div class="content-wrap">
+
+  <!-- QUICK SUMMARY -->
+  <div class="summary-grid">
+    <div class="summary-card">
+      <i data-lucide="database" style="width:20px;height:20px"></i>
+      <div>
+        <strong data-es="Sin servidor propio" data-en="No own server">Sin servidor propio</strong>
+        <span data-es="Tus stickers solo se guardan en tu dispositivo." data-en="Your stickers are only saved on your device.">Tus stickers solo se guardan en tu dispositivo.</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <i data-lucide="user-x" style="width:20px;height:20px"></i>
+      <div>
+        <strong data-es="Sin registro" data-en="No registration">Sin registro</strong>
+        <span data-es="No necesitas crear cuenta ni dar tu email." data-en="No account creation or email required.">No necesitas crear cuenta ni dar tu email.</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <i data-lucide="eye-off" style="width:20px;height:20px"></i>
+      <div>
+        <strong data-es="Sin PII" data-en="No PII">Sin PII</strong>
+        <span data-es="No recopilamos información de identificación personal." data-en="We don't collect personally identifiable information.">No recopilamos información de identificación personal.</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <i data-lucide="lock" style="width:20px;height:20px"></i>
+      <div>
+        <strong data-es="Colección privada" data-en="Private collection">Colección privada</strong>
+        <span data-es="No tenemos acceso a los stickers que guardas." data-en="We have no access to the stickers you save.">No tenemos acceso a los stickers que guardas.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h3 data-es="Contenido" data-en="Contents">Contenido</h3>
+    <ol>
+      <li><a href="#p1" data-es="Quiénes somos" data-en="Who we are">Quiénes somos</a></li>
+      <li><a href="#p2" data-es="Información que recopilamos" data-en="Information we collect">Información que recopilamos</a></li>
+      <li><a href="#p3" data-es="Cómo usamos la información" data-en="How we use information">Cómo usamos la información</a></li>
+      <li><a href="#p4" data-es="Servicios de terceros" data-en="Third-party services">Servicios de terceros</a></li>
+      <li><a href="#p5" data-es="Permisos del dispositivo" data-en="Device permissions">Permisos del dispositivo</a></li>
+      <li><a href="#p6" data-es="Retención y eliminación de datos" data-en="Data retention and deletion">Retención y eliminación de datos</a></li>
+      <li><a href="#p7" data-es="Menores de edad" data-en="Minors">Menores de edad</a></li>
+      <li><a href="#p8" data-es="Tus derechos" data-en="Your rights">Tus derechos</a></li>
+      <li><a href="#p9" data-es="Cambios en esta política" data-en="Changes to this policy">Cambios en esta política</a></li>
+      <li><a href="#p10" data-es="Contacto" data-en="Contact">Contacto</a></li>
+    </ol>
+  </div>
+
+  <!-- SECTIONS -->
+  <div class="section-block" id="p1">
+    <h2><span class="section-num">1</span> <span data-es="Quiénes somos" data-en="Who we are">Quiénes somos</span></h2>
+    <p data-es="StickerGrab es una aplicación móvil desarrollada por <strong>Velxos</strong>. Somos los responsables del tratamiento de los datos recopilados a través de la Aplicación conforme a la descripción de esta política."
+       data-en="StickerGrab is a mobile application developed by <strong>Velxos</strong>. We are responsible for processing the data collected through the Application as described in this policy.">
+      StickerGrab es una aplicación móvil desarrollada por <strong>Velxos</strong>. Somos los responsables del tratamiento de los datos recopilados a través de la Aplicación conforme a la descripción de esta política.
+    </p>
+    <p data-es="Puedes contactarnos en <a href='mailto:privacidad@velxos.com'>privacidad@velxos.com</a> para cualquier consulta relacionada con la privacidad."
+       data-en="You can contact us at <a href='mailto:privacidad@velxos.com'>privacidad@velxos.com</a> for any privacy-related queries.">
+      Puedes contactarnos en <a href="mailto:privacidad@velxos.com">privacidad@velxos.com</a> para cualquier consulta relacionada con la privacidad.
+    </p>
+  </div>
+
+  <div class="section-block" id="p2">
+    <h2><span class="section-num">2</span> <span data-es="Información que recopilamos" data-en="Information we collect">Información que recopilamos</span></h2>
+
+    <p data-es="<strong>Información que NO recopilamos directamente:</strong>" data-en="<strong>Information we do NOT collect directly:</strong>"><strong>Información que NO recopilamos directamente:</strong></p>
+    <ul>
+      <li data-es="Nombre, email, teléfono ni ningún dato de identificación personal." data-en="Name, email, phone or any personal identification data.">Nombre, email, teléfono ni ningún dato de identificación personal.</li>
+      <li data-es="Imágenes, stickers ni ningún contenido multimedia capturado o guardado por el usuario." data-en="Images, stickers or any multimedia content captured or saved by the user.">Imágenes, stickers ni ningún contenido multimedia capturado o guardado por el usuario.</li>
+      <li data-es="Historial de navegación ni contenido de otras aplicaciones." data-en="Browsing history or content from other applications.">Historial de navegación ni contenido de otras aplicaciones.</li>
+    </ul>
+
+    <p style="margin-top:20px" data-es="<strong>Información recopilada de forma automática (por servicios de terceros):</strong>" data-en="<strong>Automatically collected information (by third-party services):</strong>"><strong>Información recopilada de forma automática (por servicios de terceros):</strong></p>
+    <ul>
+      <li data-es="<strong>Datos de diagnóstico y fallos:</strong> Si la app falla, Sentry puede recopilar información anónima sobre el error (tipo de dispositivo, versión de Android, traza del error). No incluye capturas de pantalla ni datos personales." data-en="<strong>Diagnostic and crash data:</strong> If the app crashes, Sentry may collect anonymous information about the error (device type, Android version, error trace). Does not include screenshots or personal data."><strong>Datos de diagnóstico y fallos:</strong> Si la app falla, Sentry puede recopilar información anónima sobre el error (tipo de dispositivo, versión de Android, traza del error). No incluye capturas de pantalla ni datos personales.</li>
+      <li data-es="<strong>Datos de publicidad:</strong> Google AdMob puede recopilar el identificador de publicidad del dispositivo (GAID) y datos de uso de anuncios para mostrar publicidad personalizada o no personalizada." data-en="<strong>Advertising data:</strong> Google AdMob may collect the device advertising identifier (GAID) and ad usage data to display personalized or non-personalized advertising."><strong>Datos de publicidad:</strong> Google AdMob puede recopilar el identificador de publicidad del dispositivo (GAID) y datos de uso de anuncios para mostrar publicidad personalizada o no personalizada.</li>
+      <li data-es="<strong>Datos de configuración remota:</strong> Firebase Remote Config descarga parámetros de configuración de la app (sin identificar al usuario)." data-en="<strong>Remote configuration data:</strong> Firebase Remote Config downloads app configuration parameters (without identifying the user)."><strong>Datos de configuración remota:</strong> Firebase Remote Config descarga parámetros de configuración de la app (sin identificar al usuario).</li>
+    </ul>
+  </div>
+
+  <div class="section-block" id="p3">
+    <h2><span class="section-num">3</span> <span data-es="Cómo usamos la información" data-en="How we use information">Cómo usamos la información</span></h2>
+    <p data-es="La información recopilada se utiliza exclusivamente para:" data-en="The information collected is used exclusively for:">La información recopilada se utiliza exclusivamente para:</p>
+    <ul>
+      <li data-es="<strong>Mejorar la estabilidad:</strong> Los informes de fallos nos ayudan a identificar y corregir errores en la Aplicación." data-en="<strong>Improve stability:</strong> Crash reports help us identify and fix errors in the Application."><strong>Mejorar la estabilidad:</strong> Los informes de fallos nos ayudan a identificar y corregir errores en la Aplicación.</li>
+      <li data-es="<strong>Mostrar publicidad:</strong> AdMob usa los datos para mostrar anuncios relevantes y financiar el desarrollo gratuito de la Aplicación." data-en="<strong>Display advertising:</strong> AdMob uses the data to show relevant ads and fund the free development of the Application."><strong>Mostrar publicidad:</strong> AdMob usa los datos para mostrar anuncios relevantes y financiar el desarrollo gratuito de la Aplicación.</li>
+      <li data-es="<strong>Configurar funciones:</strong> Firebase Remote Config permite activar o desactivar funciones de la app de forma remota sin necesidad de actualización." data-en="<strong>Configure features:</strong> Firebase Remote Config allows activating or deactivating app features remotely without requiring an update."><strong>Configurar funciones:</strong> Firebase Remote Config permite activar o desactivar funciones de la app de forma remota sin necesidad de actualización.</li>
+    </ul>
+    <div class="highlight-box">
+      <p data-es="✅ Velxos no vende, alquila ni comparte datos de usuarios con terceros para fines de marketing propios." data-en="✅ Velxos does not sell, rent or share user data with third parties for its own marketing purposes.">✅ Velxos no vende, alquila ni comparte datos de usuarios con terceros para fines de marketing propios.</p>
+    </div>
+  </div>
+
+  <div class="section-block" id="p4">
+    <h2><span class="section-num">4</span> <span data-es="Servicios de terceros" data-en="Third-party services">Servicios de terceros</span></h2>
+    <p data-es="StickerGrab integra los siguientes servicios de terceros, cada uno con su propia política de privacidad:" data-en="StickerGrab integrates the following third-party services, each with its own privacy policy:">StickerGrab integra los siguientes servicios de terceros, cada uno con su propia política de privacidad:</p>
+
+    <table class="tp-table">
+      <thead>
+        <tr>
+          <th data-es="Servicio" data-en="Service">Servicio</th>
+          <th data-es="Propósito" data-en="Purpose">Propósito</th>
+          <th data-es="Política" data-en="Policy">Política</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google AdMob</td>
+          <td data-es="Mostrar anuncios" data-en="Display ads">Mostrar anuncios</td>
+          <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></td>
+        </tr>
+        <tr>
+          <td>Firebase Remote Config</td>
+          <td data-es="Configuración remota de funciones" data-en="Remote feature configuration">Configuración remota de funciones</td>
+          <td><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a></td>
+        </tr>
+        <tr>
+          <td>Sentry</td>
+          <td data-es="Informes de fallos anónimos" data-en="Anonymous crash reports">Informes de fallos anónimos</td>
+          <td><a href="https://sentry.io/privacy/" target="_blank" rel="noopener">sentry.io/privacy</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:16px" data-es="Velxos no controla las prácticas de privacidad de estos terceros. Te recomendamos revisar sus políticas para entender cómo tratan tus datos."
+       data-en="Velxos does not control the privacy practices of these third parties. We recommend reviewing their policies to understand how they handle your data.">
+      Velxos no controla las prácticas de privacidad de estos terceros. Te recomendamos revisar sus políticas para entender cómo tratan tus datos.
+    </p>
+  </div>
+
+  <div class="section-block" id="p5">
+    <h2><span class="section-num">5</span> <span data-es="Permisos del dispositivo" data-en="Device permissions">Permisos del dispositivo</span></h2>
+    <p data-es="StickerGrab solicita los siguientes permisos de Android, todos necesarios para su funcionamiento:" data-en="StickerGrab requests the following Android permissions, all necessary for its operation:">StickerGrab solicita los siguientes permisos de Android, todos necesarios para su funcionamiento:</p>
+    <ul>
+      <li data-es="<strong>Captura de pantalla (MediaProjection):</strong> Requerido para capturar stickers de otras apps. Se solicita al usuario en cada sesión nueva y se puede denegar en cualquier momento." data-en="<strong>Screen capture (MediaProjection):</strong> Required to capture stickers from other apps. Requested from the user each new session and can be denied at any time."><strong>Captura de pantalla (MediaProjection):</strong> Requerido para capturar stickers de otras apps. Se solicita al usuario en cada sesión nueva y se puede denegar en cualquier momento.</li>
+      <li data-es="<strong>Overlay (SYSTEM_ALERT_WINDOW):</strong> Necesario para mostrar el botón flotante de captura sobre otras aplicaciones." data-en="<strong>Overlay (SYSTEM_ALERT_WINDOW):</strong> Necessary to show the floating capture button over other applications."><strong>Overlay (SYSTEM_ALERT_WINDOW):</strong> Necesario para mostrar el botón flotante de captura sobre otras aplicaciones.</li>
+      <li data-es="<strong>Notificaciones (POST_NOTIFICATIONS):</strong> Para mostrar la notificación del servicio de captura activo (requerido por Android 13+)." data-en="<strong>Notifications (POST_NOTIFICATIONS):</strong> To show the active capture service notification (required by Android 13+)."><strong>Notificaciones (POST_NOTIFICATIONS):</strong> Para mostrar la notificación del servicio de captura activo (requerido por Android 13+).</li>
+      <li data-es="<strong>Internet (INTERNET):</strong> Para cargar anuncios de AdMob y configuración de Firebase Remote Config." data-en="<strong>Internet (INTERNET):</strong> To load AdMob ads and Firebase Remote Config configuration."><strong>Internet (INTERNET):</strong> Para cargar anuncios de AdMob y configuración de Firebase Remote Config.</li>
+      <li data-es="<strong>Vibración (VIBRATE):</strong> Para el feedback háptico al capturar un sticker." data-en="<strong>Vibration (VIBRATE):</strong> For haptic feedback when capturing a sticker."><strong>Vibración (VIBRATE):</strong> Para el feedback háptico al capturar un sticker.</li>
+    </ul>
+    <div class="highlight-box">
+      <p data-es="⚠️ La Aplicación <strong>no accede al micrófono, cámara, contactos, ubicación ni mensajes</strong>. Los permisos solicitados son los mínimos necesarios para la funcionalidad principal." data-en="⚠️ The Application <strong>does not access the microphone, camera, contacts, location or messages</strong>. The requested permissions are the minimum necessary for the main functionality.">⚠️ La Aplicación <strong>no accede al micrófono, cámara, contactos, ubicación ni mensajes</strong>. Los permisos solicitados son los mínimos necesarios para la funcionalidad principal.</p>
+    </div>
+  </div>
+
+  <div class="section-block" id="p6">
+    <h2><span class="section-num">6</span> <span data-es="Retención y eliminación de datos" data-en="Data retention and deletion">Retención y eliminación de datos</span></h2>
+    <p data-es="Los stickers y datos de la colección se almacenan <strong>únicamente en el dispositivo del usuario</strong>. Velxos no tiene acceso remoto a estos datos."
+       data-en="Stickers and collection data are stored <strong>only on the user's device</strong>. Velxos has no remote access to this data.">
+      Los stickers y datos de la colección se almacenan <strong>únicamente en el dispositivo del usuario</strong>. Velxos no tiene acceso remoto a estos datos.
+    </p>
+    <p data-es="Para eliminar todos los datos de la Aplicación, simplemente desinstala StickerGrab de tu dispositivo. Esto eliminará permanentemente todos los stickers guardados, la configuración y los datos de uso local."
+       data-en="To delete all Application data, simply uninstall StickerGrab from your device. This will permanently delete all saved stickers, settings and local usage data.">
+      Para eliminar todos los datos de la Aplicación, simplemente desinstala StickerGrab de tu dispositivo. Esto eliminará permanentemente todos los stickers guardados, la configuración y los datos de uso local.
+    </p>
+    <p data-es="Los datos de diagnóstico de Sentry (si aplica) se retienen según la política de Sentry, típicamente 90 días. Los datos de AdMob se retienen según la política de Google."
+       data-en="Sentry diagnostic data (if applicable) is retained according to Sentry's policy, typically 90 days. AdMob data is retained according to Google's policy.">
+      Los datos de diagnóstico de Sentry (si aplica) se retienen según la política de Sentry, típicamente 90 días. Los datos de AdMob se retienen según la política de Google.
+    </p>
+  </div>
+
+  <div class="section-block" id="p7">
+    <h2><span class="section-num">7</span> <span data-es="Menores de edad" data-en="Minors">Menores de edad</span></h2>
+    <p data-es="StickerGrab está dirigida a usuarios mayores de 13 años. No recopilamos intencionalmente información de menores de 13 años. Si eres padre o tutor y crees que tu hijo menor de 13 años ha usado la Aplicación, contáctanos en <a href='mailto:privacidad@velxos.com'>privacidad@velxos.com</a>."
+       data-en="StickerGrab is intended for users aged 13 and over. We do not intentionally collect information from children under 13. If you are a parent or guardian and believe your child under 13 has used the Application, contact us at <a href='mailto:privacidad@velxos.com'>privacidad@velxos.com</a>.">
+      StickerGrab está dirigida a usuarios mayores de 13 años. No recopilamos intencionalmente información de menores de 13 años. Si eres padre o tutor y crees que tu hijo menor de 13 años ha usado la Aplicación, contáctanos en <a href="mailto:privacidad@velxos.com">privacidad@velxos.com</a>.
+    </p>
+  </div>
+
+  <div class="section-block" id="p8">
+    <h2><span class="section-num">8</span> <span data-es="Tus derechos" data-en="Your rights">Tus derechos</span></h2>
+    <p data-es="Dependiendo de tu país de residencia, puedes tener los siguientes derechos respecto a tus datos:" data-en="Depending on your country of residence, you may have the following rights regarding your data:">Dependiendo de tu país de residencia, puedes tener los siguientes derechos respecto a tus datos:</p>
+    <ul>
+      <li data-es="<strong>Acceso:</strong> Solicitar información sobre los datos que tenemos sobre ti." data-en="<strong>Access:</strong> Request information about the data we hold about you."><strong>Acceso:</strong> Solicitar información sobre los datos que tenemos sobre ti.</li>
+      <li data-es="<strong>Rectificación:</strong> Solicitar la corrección de datos inexactos." data-en="<strong>Rectification:</strong> Request correction of inaccurate data."><strong>Rectificación:</strong> Solicitar la corrección de datos inexactos.</li>
+      <li data-es="<strong>Eliminación:</strong> Solicitar la eliminación de tus datos. Para datos locales, desinstala la Aplicación. Para datos de terceros, contáctalos directamente." data-en="<strong>Deletion:</strong> Request deletion of your data. For local data, uninstall the Application. For third-party data, contact them directly."><strong>Eliminación:</strong> Solicitar la eliminación de tus datos. Para datos locales, desinstala la Aplicación. Para datos de terceros, contáctalos directamente.</li>
+      <li data-es="<strong>Opt-out de publicidad personalizada:</strong> Puedes desactivar la publicidad personalizada en los ajustes de Google de tu dispositivo (<em>Ajustes → Google → Anuncios</em>)." data-en="<strong>Opt-out of personalized advertising:</strong> You can disable personalized advertising in your device's Google settings (<em>Settings → Google → Ads</em>)."><strong>Opt-out de publicidad personalizada:</strong> Puedes desactivar la publicidad personalizada en los ajustes de Google de tu dispositivo (<em>Ajustes → Google → Anuncios</em>).</li>
+    </ul>
+    <p data-es="Los usuarios en el Espacio Económico Europeo (EEE) tienen derechos adicionales bajo el RGPD. Contáctanos en <a href='mailto:privacidad@velxos.com'>privacidad@velxos.com</a> para ejercer cualquiera de estos derechos."
+       data-en="Users in the European Economic Area (EEA) have additional rights under GDPR. Contact us at <a href='mailto:privacidad@velxos.com'>privacidad@velxos.com</a> to exercise any of these rights.">
+      Los usuarios en el Espacio Económico Europeo (EEE) tienen derechos adicionales bajo el RGPD. Contáctanos en <a href="mailto:privacidad@velxos.com">privacidad@velxos.com</a> para ejercer cualquiera de estos derechos.
+    </p>
+  </div>
+
+  <div class="section-block" id="p9">
+    <h2><span class="section-num">9</span> <span data-es="Cambios en esta política" data-en="Changes to this policy">Cambios en esta política</span></h2>
+    <p data-es="Podemos actualizar esta Política de Privacidad periódicamente. Publicaremos la nueva versión en esta misma página con la fecha de la última actualización. Te recomendamos revisar esta política regularmente."
+       data-en="We may update this Privacy Policy periodically. We will publish the new version on this same page with the date of the last update. We recommend reviewing this policy regularly.">
+      Podemos actualizar esta Política de Privacidad periódicamente. Publicaremos la nueva versión en esta misma página con la fecha de la última actualización. Te recomendamos revisar esta política regularmente.
+    </p>
+    <p data-es="El uso continuado de la Aplicación tras la publicación de cambios significa que aceptas la nueva política."
+       data-en="Continued use of the Application after the publication of changes means you accept the new policy.">
+      El uso continuado de la Aplicación tras la publicación de cambios significa que aceptas la nueva política.
+    </p>
+  </div>
+
+  <div class="section-block" id="p10">
+    <h2><span class="section-num">10</span> <span data-es="Contacto" data-en="Contact">Contacto</span></h2>
+    <p data-es="Para consultas sobre privacidad o para ejercer tus derechos, contáctanos:" data-en="For privacy inquiries or to exercise your rights, contact us:">Para consultas sobre privacidad o para ejercer tus derechos, contáctanos:</p>
+    <div class="highlight-box">
+      <p>
+        <strong>Velxos — Equipo de Privacidad</strong><br />
+        📧 <a href="mailto:privacidad@velxos.com">privacidad@velxos.com</a><br />
+        🌐 <a href="https://velxos.github.io/stickergrab" target="_blank" rel="noopener">velxos.github.io/stickergrab</a><br />
+        <span style="color:var(--muted);font-size:.9rem" data-es="Respondemos en un plazo de 30 días hábiles." data-en="We respond within 30 business days.">Respondemos en un plazo de 30 días hábiles.</span>
+      </p>
+    </div>
+  </div>
+
+</div><!-- /content-wrap -->
+
+<footer>
+  <div class="footer-links">
+    <a href="../" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="../terminos/" data-es="Términos y condiciones" data-en="Terms &amp; Conditions">Términos y condiciones</a>
+    <a href="mailto:privacidad@velxos.com" data-es="Contacto" data-en="Contact">Contacto</a>
+  </div>
+  <p class="footer-copy">© 2025 Velxos · StickerGrab</p>
+</footer>
+
+<script>
+  lucide.createIcons();
+  const LANG_KEY = 'sg_lang';
+  function setLang(lang) {
+    localStorage.setItem(LANG_KEY, lang);
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+    document.querySelectorAll('[data-es],[data-en]').forEach(el => {
+      const txt = el.getAttribute('data-' + lang);
+      if (txt) el.innerHTML = txt;
+    });
+  }
+  const savedLang = localStorage.getItem(LANG_KEY) || (navigator.language.startsWith('en') ? 'en' : 'es');
+  setLang(savedLang);
+</script>
+</body>
+</html>

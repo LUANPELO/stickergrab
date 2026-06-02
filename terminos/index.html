@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Términos y Condiciones – StickerGrab</title>
+  <meta name="description" content="Términos y condiciones de uso de StickerGrab, la app para capturar y compartir stickers animados." />
+  <link rel="icon" type="image/png" href="../assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --bg:      #0D0D14;
+      --surface: #13131F;
+      --card:    #1A1A2E;
+      --border:  #2A2A40;
+      --purple:  #6C63FF;
+      --purple2: #8B85FF;
+      --text:    #E8E8F0;
+      --muted:   #888899;
+      --radius:  16px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 32px;
+      background: rgba(13,13,20,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { width: 32px; height: 32px; border-radius: 8px; }
+    .nav-logo span { font-weight: 700; font-size: 17px; color: var(--text); }
+    .lang-toggle { display: flex; gap: 4px; background: var(--card); border-radius: 10px; padding: 4px; }
+    .lang-btn {
+      padding: 5px 13px; border-radius: 7px; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      background: transparent; color: var(--muted); transition: all .2s;
+    }
+    .lang-btn.active { background: var(--purple); color: #fff; }
+
+    /* HEADER */
+    .page-header {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 60px 24px 50px; text-align: center;
+    }
+    .page-header .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(108,99,255,.14); border: 1px solid rgba(108,99,255,.3);
+      color: var(--purple2); border-radius: 50px; padding: 5px 15px;
+      font-size: 12px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .06em; margin-bottom: 18px;
+    }
+    .page-header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+      background: linear-gradient(135deg, #fff 30%, var(--purple2) 70%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 12px;
+    }
+    .page-header p { color: var(--muted); font-size: .95rem; }
+
+    /* CONTENT */
+    .content-wrap {
+      max-width: 820px; margin: 0 auto; padding: 60px 24px 80px;
+    }
+    .toc {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 32px; margin-bottom: 48px;
+    }
+    .toc h3 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 8px; }
+    .toc a { color: var(--purple2); text-decoration: none; font-size: .95rem; transition: color .15s; }
+    .toc a:hover { color: #fff; }
+
+    .section-block { margin-bottom: 52px; }
+    .section-block h2 {
+      font-size: 1.4rem; font-weight: 700;
+      color: #fff; margin-bottom: 16px;
+      padding-bottom: 12px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; background: rgba(108,99,255,.18);
+      color: var(--purple2); border-radius: 8px; font-size: 13px;
+      font-weight: 800; flex-shrink: 0;
+    }
+    .section-block p { color: #bbbbc8; margin-bottom: 14px; font-size: .97rem; }
+    .section-block ul, .section-block ol {
+      padding-left: 22px; color: #bbbbc8; font-size: .97rem;
+    }
+    .section-block li { margin-bottom: 8px; }
+    .section-block strong { color: var(--text); }
+    .section-block a { color: var(--purple2); }
+
+    .highlight-box {
+      background: rgba(108,99,255,.08); border: 1px solid rgba(108,99,255,.25);
+      border-radius: 12px; padding: 16px 20px; margin: 16px 0;
+    }
+    .highlight-box p { margin: 0; color: #bbbbc8; font-size: .93rem; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px; text-align: center;
+    }
+    .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 14px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--purple2); }
+    .footer-copy { color: var(--muted); font-size: .85rem; }
+
+    @media (max-width: 600px) { nav { padding: 12px 16px; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../">
+    <img src="../assets/logo.png" alt="StickerGrab" />
+    <span>StickerGrab</span>
+  </a>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="badge">
+    <i data-lucide="file-text" style="width:13px;height:13px"></i>
+    <span>Legal</span>
+  </div>
+  <h1 data-es="Términos y Condiciones" data-en="Terms and Conditions">Términos y Condiciones</h1>
+  <p data-es="Última actualización: 2 de junio de 2025 · StickerGrab v1.0.0" data-en="Last updated: June 2, 2025 · StickerGrab v1.0.0">
+    Última actualización: 2 de junio de 2025 · StickerGrab v1.0.0
+  </p>
+</div>
+
+<div class="content-wrap">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h3 data-es="Contenido" data-en="Contents">Contenido</h3>
+    <ol id="toc-list">
+      <li><a href="#s1" data-es="Aceptación de los términos" data-en="Acceptance of Terms">Aceptación de los términos</a></li>
+      <li><a href="#s2" data-es="Descripción del servicio" data-en="Description of Service">Descripción del servicio</a></li>
+      <li><a href="#s3" data-es="Licencia de uso" data-en="License to Use">Licencia de uso</a></li>
+      <li><a href="#s4" data-es="Conducta del usuario" data-en="User Conduct">Conducta del usuario</a></li>
+      <li><a href="#s5" data-es="Propiedad intelectual" data-en="Intellectual Property">Propiedad intelectual</a></li>
+      <li><a href="#s6" data-es="Publicidad" data-en="Advertising">Publicidad</a></li>
+      <li><a href="#s7" data-es="Limitación de responsabilidad" data-en="Limitation of Liability">Limitación de responsabilidad</a></li>
+      <li><a href="#s8" data-es="Modificaciones" data-en="Modifications">Modificaciones</a></li>
+      <li><a href="#s9" data-es="Terminación" data-en="Termination">Terminación</a></li>
+      <li><a href="#s10" data-es="Contacto" data-en="Contact">Contacto</a></li>
+    </ol>
+  </div>
+
+  <!-- SECTIONS -->
+  <div class="section-block" id="s1">
+    <h2><span class="section-num">1</span> <span data-es="Aceptación de los términos" data-en="Acceptance of Terms">Aceptación de los términos</span></h2>
+    <p data-es="Al descargar, instalar o utilizar StickerGrab («la Aplicación»), desarrollada y distribuida por <strong>Velxos</strong>, aceptas quedar vinculado por los presentes Términos y Condiciones («Términos»). Si no estás de acuerdo con alguna parte de estos Términos, no debes usar la Aplicación."
+       data-en="By downloading, installing or using StickerGrab ('the Application'), developed and distributed by <strong>Velxos</strong>, you agree to be bound by these Terms and Conditions ('Terms'). If you disagree with any part of these Terms, you must not use the Application.">
+      Al descargar, instalar o utilizar StickerGrab («la Aplicación»), desarrollada y distribuida por <strong>Velxos</strong>, aceptas quedar vinculado por los presentes Términos y Condiciones («Términos»). Si no estás de acuerdo con alguna parte de estos Términos, no debes usar la Aplicación.
+    </p>
+    <p data-es="La Aplicación está dirigida a usuarios mayores de 13 años. Si eres menor de 13 años, no debes usar StickerGrab."
+       data-en="The Application is intended for users aged 13 and over. If you are under 13 years of age, you must not use StickerGrab.">
+      La Aplicación está dirigida a usuarios mayores de 13 años. Si eres menor de 13 años, no debes usar StickerGrab.
+    </p>
+  </div>
+
+  <div class="section-block" id="s2">
+    <h2><span class="section-num">2</span> <span data-es="Descripción del servicio" data-en="Description of Service">Descripción del servicio</span></h2>
+    <p data-es="StickerGrab es una aplicación móvil para Android que permite a los usuarios:" data-en="StickerGrab is an Android mobile application that allows users to:">StickerGrab es una aplicación móvil para Android que permite a los usuarios:</p>
+    <ul>
+      <li data-es="Capturar imágenes y GIFs animados de la pantalla del dispositivo mediante MediaProjection API de Android." data-en="Capture images and animated GIFs from the device screen using Android's MediaProjection API.">Capturar imágenes y GIFs animados de la pantalla del dispositivo mediante MediaProjection API de Android.</li>
+      <li data-es="Guardar y organizar una colección personal de stickers en el dispositivo." data-en="Save and organize a personal collection of stickers on the device.">Guardar y organizar una colección personal de stickers en el dispositivo.</li>
+      <li data-es="Compartir stickers a través de WhatsApp, Telegram y otras aplicaciones compatibles." data-en="Share stickers via WhatsApp, Telegram and other compatible applications.">Compartir stickers a través de WhatsApp, Telegram y otras aplicaciones compatibles.</li>
+      <li data-es="Crear packs de stickers para WhatsApp utilizando el protocolo oficial de stickers de WhatsApp." data-en="Create sticker packs for WhatsApp using WhatsApp's official sticker protocol.">Crear packs de stickers para WhatsApp utilizando el protocolo oficial de stickers de WhatsApp.</li>
+    </ul>
+    <div class="highlight-box">
+      <p data-es="⚠️ La captura de pantalla requiere el permiso explícito del usuario en cada sesión. StickerGrab no puede capturar pantallas sin que el usuario lo autorice activamente." data-en="⚠️ Screen capture requires explicit user permission in each session. StickerGrab cannot capture screens without the user actively authorizing it.">⚠️ La captura de pantalla requiere el permiso explícito del usuario en cada sesión. StickerGrab no puede capturar pantallas sin que el usuario lo autorice activamente.</p>
+    </div>
+  </div>
+
+  <div class="section-block" id="s3">
+    <h2><span class="section-num">3</span> <span data-es="Licencia de uso" data-en="License to Use">Licencia de uso</span></h2>
+    <p data-es="Velxos te otorga una licencia limitada, no exclusiva, no transferible y revocable para usar la Aplicación en tu dispositivo Android personal, exclusivamente con fines personales y no comerciales, sujeta al cumplimiento de estos Términos."
+       data-en="Velxos grants you a limited, non-exclusive, non-transferable and revocable license to use the Application on your personal Android device, exclusively for personal and non-commercial purposes, subject to compliance with these Terms.">
+      Velxos te otorga una licencia limitada, no exclusiva, no transferible y revocable para usar la Aplicación en tu dispositivo Android personal, exclusivamente con fines personales y no comerciales, sujeta al cumplimiento de estos Términos.
+    </p>
+    <p data-es="Esta licencia no incluye el derecho a:" data-en="This license does not include the right to:">Esta licencia no incluye el derecho a:</p>
+    <ul>
+      <li data-es="Modificar, descompilar o realizar ingeniería inversa de la Aplicación." data-en="Modify, decompile or reverse engineer the Application.">Modificar, descompilar o realizar ingeniería inversa de la Aplicación.</li>
+      <li data-es="Redistribuir o vender la Aplicación o cualquier parte de ella." data-en="Redistribute or sell the Application or any part of it.">Redistribuir o vender la Aplicación o cualquier parte de ella.</li>
+      <li data-es="Usar la Aplicación para fines comerciales sin autorización previa y escrita de Velxos." data-en="Use the Application for commercial purposes without prior written authorization from Velxos.">Usar la Aplicación para fines comerciales sin autorización previa y escrita de Velxos.</li>
+    </ul>
+  </div>
+
+  <div class="section-block" id="s4">
+    <h2><span class="section-num">4</span> <span data-es="Conducta del usuario" data-en="User Conduct">Conducta del usuario</span></h2>
+    <p data-es="Al usar StickerGrab, te comprometes a no:" data-en="When using StickerGrab, you agree not to:">Al usar StickerGrab, te comprometes a no:</p>
+    <ul>
+      <li data-es="Capturar, guardar ni distribuir contenido protegido por derechos de autor sin autorización del titular." data-en="Capture, save or distribute copyright-protected content without authorization from the rights holder.">Capturar, guardar ni distribuir contenido protegido por derechos de autor sin autorización del titular.</li>
+      <li data-es="Capturar ni distribuir imágenes de personas sin su consentimiento." data-en="Capture or distribute images of people without their consent.">Capturar ni distribuir imágenes de personas sin su consentimiento.</li>
+      <li data-es="Usar la Aplicación para crear, distribuir o promover contenido ilegal, ofensivo, difamatorio, obsceno o que incite al odio." data-en="Use the Application to create, distribute or promote illegal, offensive, defamatory, obscene or hate-inciting content.">Usar la Aplicación para crear, distribuir o promover contenido ilegal, ofensivo, difamatorio, obsceno o que incite al odio.</li>
+      <li data-es="Intentar acceder, modificar o interferir con los sistemas de Velxos o de terceros de forma no autorizada." data-en="Attempt to access, modify or interfere with Velxos' or third-party systems in an unauthorized manner.">Intentar acceder, modificar o interferir con los sistemas de Velxos o de terceros de forma no autorizada.</li>
+      <li data-es="Usar la Aplicación de manera que infrinja las leyes locales, nacionales o internacionales aplicables." data-en="Use the Application in a way that violates applicable local, national or international laws.">Usar la Aplicación de manera que infrinja las leyes locales, nacionales o internacionales aplicables.</li>
+    </ul>
+    <p data-es="Eres el único responsable del contenido que capturas, guardas o compartes mediante StickerGrab. Velxos no supervisa ni tiene acceso al contenido generado por los usuarios."
+       data-en="You are solely responsible for the content you capture, save or share using StickerGrab. Velxos does not monitor or have access to user-generated content.">
+      Eres el único responsable del contenido que capturas, guardas o compartes mediante StickerGrab. Velxos no supervisa ni tiene acceso al contenido generado por los usuarios.
+    </p>
+  </div>
+
+  <div class="section-block" id="s5">
+    <h2><span class="section-num">5</span> <span data-es="Propiedad intelectual" data-en="Intellectual Property">Propiedad intelectual</span></h2>
+    <p data-es="La Aplicación, incluyendo su código fuente, diseño, logotipos, nombre comercial y contenidos propios, es propiedad exclusiva de Velxos y está protegida por las leyes de propiedad intelectual aplicables."
+       data-en="The Application, including its source code, design, logos, trade name and own content, is the exclusive property of Velxos and is protected by applicable intellectual property laws.">
+      La Aplicación, incluyendo su código fuente, diseño, logotipos, nombre comercial y contenidos propios, es propiedad exclusiva de Velxos y está protegida por las leyes de propiedad intelectual aplicables.
+    </p>
+    <p data-es="Los stickers capturados a través de la Aplicación pueden estar protegidos por derechos de autor de sus creadores originales. StickerGrab es una herramienta técnica y no reclama ningún derecho sobre el contenido capturado por el usuario."
+       data-en="Stickers captured through the Application may be protected by the copyright of their original creators. StickerGrab is a technical tool and claims no rights over content captured by the user.">
+      Los stickers capturados a través de la Aplicación pueden estar protegidos por derechos de autor de sus creadores originales. StickerGrab es una herramienta técnica y no reclama ningún derecho sobre el contenido capturado por el usuario.
+    </p>
+  </div>
+
+  <div class="section-block" id="s6">
+    <h2><span class="section-num">6</span> <span data-es="Publicidad" data-en="Advertising">Publicidad</span></h2>
+    <p data-es="StickerGrab puede mostrar anuncios de terceros mediante <strong>Google AdMob</strong>. Estos anuncios ayudan a financiar el desarrollo de la Aplicación y a mantenerla gratuita para todos los usuarios."
+       data-en="StickerGrab may display third-party advertisements through <strong>Google AdMob</strong>. These ads help fund the development of the Application and keep it free for all users.">
+      StickerGrab puede mostrar anuncios de terceros mediante <strong>Google AdMob</strong>. Estos anuncios ayudan a financiar el desarrollo de la Aplicación y a mantenerla gratuita para todos los usuarios.
+    </p>
+    <p data-es="Google puede usar identificadores del dispositivo para personalizar los anuncios mostrados. Puedes consultar la política de privacidad de Google en <a href='https://policies.google.com/privacy' target='_blank' rel='noopener'>policies.google.com/privacy</a>."
+       data-en="Google may use device identifiers to personalize the ads shown. You can review Google's privacy policy at <a href='https://policies.google.com/privacy' target='_blank' rel='noopener'>policies.google.com/privacy</a>.">
+      Google puede usar identificadores del dispositivo para personalizar los anuncios mostrados. Puedes consultar la política de privacidad de Google en <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.
+    </p>
+  </div>
+
+  <div class="section-block" id="s7">
+    <h2><span class="section-num">7</span> <span data-es="Limitación de responsabilidad" data-en="Limitation of Liability">Limitación de responsabilidad</span></h2>
+    <p data-es="La Aplicación se proporciona «tal cual» y «según disponibilidad», sin garantías de ningún tipo, expresas o implícitas. Velxos no garantiza que la Aplicación funcione sin interrupciones ni errores."
+       data-en="The Application is provided 'as is' and 'as available', without warranties of any kind, express or implied. Velxos does not guarantee that the Application will operate without interruption or errors.">
+      La Aplicación se proporciona «tal cual» y «según disponibilidad», sin garantías de ningún tipo, expresas o implícitas. Velxos no garantiza que la Aplicación funcione sin interrupciones ni errores.
+    </p>
+    <p data-es="En la máxima medida permitida por la ley aplicable, Velxos no será responsable de ningún daño indirecto, incidental, especial, consecuente o punitivo, incluyendo pérdida de datos, pérdida de beneficios o interrupción del negocio."
+       data-en="To the maximum extent permitted by applicable law, Velxos shall not be liable for any indirect, incidental, special, consequential or punitive damages, including loss of data, loss of profits or business interruption.">
+      En la máxima medida permitida por la ley aplicable, Velxos no será responsable de ningún daño indirecto, incidental, especial, consecuente o punitivo, incluyendo pérdida de datos, pérdida de beneficios o interrupción del negocio.
+    </p>
+    <div class="highlight-box">
+      <p data-es="Velxos no se hace responsable del uso que los usuarios hagan del contenido capturado. Cada usuario es responsable de asegurarse de que su uso cumple con la legislación de derechos de autor y privacidad de su país."
+         data-en="Velxos is not responsible for how users use captured content. Each user is responsible for ensuring their use complies with copyright and privacy legislation in their country.">
+        Velxos no se hace responsable del uso que los usuarios hagan del contenido capturado. Cada usuario es responsable de asegurarse de que su uso cumple con la legislación de derechos de autor y privacidad de su país.
+      </p>
+    </div>
+  </div>
+
+  <div class="section-block" id="s8">
+    <h2><span class="section-num">8</span> <span data-es="Modificaciones" data-en="Modifications">Modificaciones</span></h2>
+    <p data-es="Velxos se reserva el derecho de modificar estos Términos en cualquier momento. Los cambios entrarán en vigor en el momento de su publicación. El uso continuado de la Aplicación tras la publicación de los cambios implica la aceptación de los nuevos Términos."
+       data-en="Velxos reserves the right to modify these Terms at any time. Changes will take effect upon publication. Continued use of the Application after the publication of changes implies acceptance of the new Terms.">
+      Velxos se reserva el derecho de modificar estos Términos en cualquier momento. Los cambios entrarán en vigor en el momento de su publicación. El uso continuado de la Aplicación tras la publicación de los cambios implica la aceptación de los nuevos Términos.
+    </p>
+    <p data-es="También nos reservamos el derecho de modificar, suspender o discontinuar la Aplicación (o cualquier parte de ella) en cualquier momento, con o sin previo aviso."
+       data-en="We also reserve the right to modify, suspend or discontinue the Application (or any part of it) at any time, with or without prior notice.">
+      También nos reservamos el derecho de modificar, suspender o discontinuar la Aplicación (o cualquier parte de ella) en cualquier momento, con o sin previo aviso.
+    </p>
+  </div>
+
+  <div class="section-block" id="s9">
+    <h2><span class="section-num">9</span> <span data-es="Terminación" data-en="Termination">Terminación</span></h2>
+    <p data-es="Velxos puede suspender o terminar tu acceso a la Aplicación inmediatamente, sin previo aviso ni responsabilidad, si incumples estos Términos. Puedes terminar tu uso de la Aplicación en cualquier momento desinstalándola de tu dispositivo."
+       data-en="Velxos may suspend or terminate your access to the Application immediately, without prior notice or liability, if you breach these Terms. You may terminate your use of the Application at any time by uninstalling it from your device.">
+      Velxos puede suspender o terminar tu acceso a la Aplicación inmediatamente, sin previo aviso ni responsabilidad, si incumples estos Términos. Puedes terminar tu uso de la Aplicación en cualquier momento desinstalándola de tu dispositivo.
+    </p>
+  </div>
+
+  <div class="section-block" id="s10">
+    <h2><span class="section-num">10</span> <span data-es="Contacto" data-en="Contact">Contacto</span></h2>
+    <p data-es="Para cualquier consulta relacionada con estos Términos, puedes contactarnos en:" data-en="For any questions related to these Terms, you can contact us at:">Para cualquier consulta relacionada con estos Términos, puedes contactarnos en:</p>
+    <div class="highlight-box">
+      <p><strong>Velxos</strong><br />
+      📧 <a href="mailto:legal@velxos.com">legal@velxos.com</a><br />
+      🌐 <a href="https://velxos.github.io/stickergrab" target="_blank" rel="noopener">velxos.github.io/stickergrab</a>
+      </p>
+    </div>
+  </div>
+
+</div><!-- /content-wrap -->
+
+<footer>
+  <div class="footer-links">
+    <a href="../" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="../privacidad/" data-es="Política de privacidad" data-en="Privacy Policy">Política de privacidad</a>
+    <a href="mailto:legal@velxos.com" data-es="Contacto" data-en="Contact">Contacto</a>
+  </div>
+  <p class="footer-copy">© 2025 Velxos · StickerGrab</p>
+</footer>
+
+<script>
+  lucide.createIcons();
+  const LANG_KEY = 'sg_lang';
+  function setLang(lang) {
+    localStorage.setItem(LANG_KEY, lang);
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+    document.querySelectorAll('[data-es],[data-en]').forEach(el => {
+      const txt = el.getAttribute('data-' + lang);
+      if (txt) el.innerHTML = txt;
+    });
+  }
+  const savedLang = localStorage.getItem(LANG_KEY) || (navigator.language.startsWith('en') ? 'en' : 'es');
+  setLang(savedLang);
+</script>
+</body>
+</html>
