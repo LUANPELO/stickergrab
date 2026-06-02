@@ -554,7 +554,7 @@
   </p>
 
   <!-- APK download cards -->
-  <div class="apk-cards">
+  <div class="apk-cards" id="apk-cards">
     <div class="apk-card global">
       <div class="apk-rec" data-es="⭐ Recomendado" data-en="⭐ Recommended">⭐ Recomendado</div>
       <div class="apk-label" data-es="APK Global" data-en="APK Global">APK Global</div>
@@ -907,8 +907,7 @@
             </div>
             <a class="tnav-btn primary" style="text-decoration:none"
                id="finalDownloadBtn"
-               href="https://github.com/LUANPELO/sticker_save/releases/download/v1.0.0/stickergrab-v1.0.0.apk"
-               download>
+               href="#apk-cards">
               <i data-lucide="download" style="width:15px;height:15px"></i>
               <span data-es="Descargar APK" data-en="Download APK">Descargar APK</span>
             </a>
@@ -991,35 +990,11 @@
 <script>
   lucide.createIcons();
 
-  // ── Sonido de cámara + flash al tocar el logo ─────────────
-  function playCameraSound() {
-    try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      function tick(t, amp, dur) {
-        const len = Math.floor(ctx.sampleRate * dur);
-        const buf = ctx.createBuffer(1, len, ctx.sampleRate);
-        const d = buf.getChannelData(0);
-        for (let i = 0; i < len; i++)
-          d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * dur * 0.18));
-        const src = ctx.createBufferSource();
-        src.buffer = buf;
-        const g = ctx.createGain();
-        g.gain.value = amp;
-        src.connect(g); g.connect(ctx.destination);
-        src.start(t); src.stop(t + dur + 0.01);
-      }
-      tick(ctx.currentTime,        0.9,  0.022); // obturador abre
-      tick(ctx.currentTime + 0.08, 0.55, 0.016); // obturador cierra
-    } catch(e) {}
-  }
-
   function snapLogo(el) {
-    playCameraSound();
-    const img = el.querySelector('img');
-    img.classList.remove('snap');
-    void img.offsetWidth;
-    img.classList.add('snap');
-    img.addEventListener('animationend', () => img.classList.remove('snap'), { once: true });
+    el.classList.remove('snap');
+    void el.offsetWidth;
+    el.classList.add('snap');
+    el.addEventListener('animationend', () => el.classList.remove('snap'), { once: true });
   }
 
   // ── Language ──────────────────────────────────────────────

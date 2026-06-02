@@ -198,7 +198,7 @@
       <li data-es="Crear packs de stickers para WhatsApp utilizando el protocolo oficial de stickers de WhatsApp." data-en="Create sticker packs for WhatsApp using WhatsApp's official sticker protocol.">Crear packs de stickers para WhatsApp utilizando el protocolo oficial de stickers de WhatsApp.</li>
     </ul>
     <div class="highlight-box">
-      <p data-es="⚠️ La captura de pantalla requiere el permiso explícito del usuario en cada sesión. StickerGrab no puede capturar pantallas sin que el usuario lo autorice activamente." data-en="⚠️ Screen capture requires explicit user permission in each session. StickerGrab cannot capture screens without the user actively authorizing it.">⚠️ La captura de pantalla requiere el permiso explícito del usuario en cada sesión. StickerGrab no puede capturar pantallas sin que el usuario lo autorice activamente.</p>
+      <p data-es="<i data-lucide='alert-triangle' style='width:15px;height:15px;vertical-align:middle;margin-right:6px;color:#FFC850'></i> La captura de pantalla requiere el permiso explícito del usuario en cada sesión. StickerGrab no puede capturar pantallas sin que el usuario lo autorice activamente." data-en="<i data-lucide='alert-triangle' style='width:15px;height:15px;vertical-align:middle;margin-right:6px;color:#FFC850'></i> Screen capture requires explicit user permission in each session. StickerGrab cannot capture screens without the user actively authorizing it."><i data-lucide="alert-triangle" style="width:15px;height:15px;vertical-align:middle;margin-right:6px;color:#FFC850"></i> La captura de pantalla requiere el permiso explícito del usuario en cada sesión. StickerGrab no puede capturar pantallas sin que el usuario lo autorice activamente.</p>
     </div>
   </div>
 
@@ -299,8 +299,8 @@
     <p data-es="Para cualquier consulta relacionada con estos Términos, puedes contactarnos en:" data-en="For any questions related to these Terms, you can contact us at:">Para cualquier consulta relacionada con estos Términos, puedes contactarnos en:</p>
     <div class="highlight-box">
       <p><strong>Velxos</strong><br />
-      📧 <a href="mailto:legal@velxos.com">legal@velxos.com</a><br />
-      🌐 <a href="https://luanpelo.github.io/stickergrab" target="_blank" rel="noopener">luanpelo.github.io/stickergrab</a>
+      <i data-lucide="mail" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;color:#8B85FF"></i><a href="mailto:velxos.contacto@gmail.com">velxos.contacto@gmail.com</a><br />
+      <i data-lucide="globe" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;color:#8B85FF"></i><a href="https://luanpelo.github.io/stickergrab" target="_blank" rel="noopener">luanpelo.github.io/stickergrab</a>
       </p>
     </div>
   </div>
@@ -311,7 +311,7 @@
   <div class="footer-links">
     <a href="../" data-es="Inicio" data-en="Home">Inicio</a>
     <a href="../privacidad/" data-es="Política de privacidad" data-en="Privacy Policy">Política de privacidad</a>
-    <a href="mailto:legal@velxos.com" data-es="Contacto" data-en="Contact">Contacto</a>
+    <a href="mailto:velxos.contacto@gmail.com" data-es="Contacto" data-en="Contact">Contacto</a>
   </div>
   <p class="footer-copy">© 2026 Velxos · StickerGrab</p>
 </footer>
@@ -327,6 +327,7 @@
       const txt = el.getAttribute('data-' + lang);
       if (txt) el.innerHTML = txt;
     });
+    lucide.createIcons();
   }
   const savedLang = localStorage.getItem(LANG_KEY) || (navigator.language.startsWith('en') ? 'en' : 'es');
   setLang(savedLang);
