@@ -12,17 +12,17 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
-      --bg:       #0D0D14;
-      --surface:  #13131F;
-      --card:     #1A1A2E;
-      --border:   #2A2A40;
-      --purple:   #6C63FF;
-      --purple2:  #8B85FF;
-      --pink:     #FF6B9D;
-      --teal:     #4ECDC4;
-      --text:     #E8E8F0;
-      --muted:    #888899;
-      --radius:   16px;
+      --bg:      #0D0D14;
+      --surface: #13131F;
+      --card:    #1A1A2E;
+      --border:  #2A2A40;
+      --purple:  #6C63FF;
+      --purple2: #8B85FF;
+      --pink:    #FF6B9D;
+      --teal:    #4ECDC4;
+      --text:    #E8E8F0;
+      --muted:   #888899;
+      --radius:  16px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -47,10 +47,7 @@
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo img { width: 36px; height: 36px; border-radius: 10px; }
     .nav-logo span { font-weight: 700; font-size: 18px; color: var(--text); }
-    .lang-toggle {
-      display: flex; gap: 4px;
-      background: var(--card); border-radius: 10px; padding: 4px;
-    }
+    .lang-toggle { display: flex; gap: 4px; background: var(--card); border-radius: 10px; padding: 4px; }
     .lang-btn {
       padding: 6px 14px; border-radius: 7px; border: none; cursor: pointer;
       font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
@@ -66,8 +63,7 @@
       position: relative; overflow: hidden;
     }
     .hero-glow {
-      position: absolute; width: 700px; height: 700px;
-      border-radius: 50%;
+      position: absolute; width: 700px; height: 700px; border-radius: 50%;
       background: radial-gradient(circle, rgba(108,99,255,.18) 0%, transparent 70%);
       top: 50%; left: 50%; transform: translate(-50%,-50%);
       pointer-events: none;
@@ -78,10 +74,7 @@
       margin-bottom: 28px;
       animation: floatLogo 4s ease-in-out infinite;
     }
-    @keyframes floatLogo {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+    @keyframes floatLogo { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 6px;
       background: rgba(108,99,255,.15); border: 1px solid rgba(108,99,255,.35);
@@ -89,49 +82,70 @@
       font-size: 13px; font-weight: 600; margin-bottom: 20px;
     }
     .hero h1 {
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 900; line-height: 1.1;
+      font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 900; line-height: 1.1;
       background: linear-gradient(135deg, #fff 30%, var(--purple2) 70%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       margin-bottom: 20px;
     }
-    .hero p {
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      color: var(--muted); max-width: 520px;
+    .hero > p {
+      font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--muted); max-width: 520px;
       margin: 0 auto 40px;
     }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--purple);
-      color: #fff; text-decoration: none;
-      padding: 16px 36px; border-radius: 50px;
-      font-weight: 700; font-size: 17px;
-      box-shadow: 0 8px 32px rgba(108,99,255,.4);
-      transition: all .2s; border: none; cursor: pointer;
+
+    /* ── APK DOWNLOAD CARDS ─────────────────────────── */
+    .apk-cards {
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 36px;
     }
-    .btn-primary:hover {
-      background: var(--purple2);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(108,99,255,.5);
+    .apk-card {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      background: var(--card); border: 1.5px solid var(--border);
+      border-radius: 20px; padding: 24px 28px; min-width: 200px;
+      transition: transform .2s, border-color .2s;
+      position: relative;
     }
-    .btn-secondary {
+    .apk-card:hover { transform: translateY(-3px); }
+    .apk-card.global { border-color: rgba(108,99,255,.4); }
+    .apk-card.global:hover { border-color: var(--purple); box-shadow: 0 0 30px rgba(108,99,255,.2); }
+    .apk-card.lite { border-color: rgba(78,205,196,.25); }
+    .apk-card.lite:hover { border-color: var(--teal); box-shadow: 0 0 30px rgba(78,205,196,.15); }
+    .apk-rec {
+      position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+      background: var(--purple); color: #fff; font-size: 11px; font-weight: 700;
+      padding: 3px 12px; border-radius: 20px; white-space: nowrap;
+      letter-spacing: .04em;
+    }
+    .apk-label { font-size: 16px; font-weight: 800; }
+    .apk-meta { font-size: 12px; color: var(--muted); }
+    .apk-tags { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+    .apk-tag {
+      font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 6px;
+    }
+    .tag-purple { background: rgba(108,99,255,.15); color: var(--purple2); }
+    .tag-teal   { background: rgba(78,205,196,.12); color: var(--teal); }
+    .tag-gray   { background: rgba(255,255,255,.07); color: var(--muted); }
+    .btn-dl-global {
       display: inline-flex; align-items: center; gap: 8px;
-      border: 1.5px solid var(--border);
-      color: var(--muted); text-decoration: none;
-      padding: 14px 28px; border-radius: 50px;
-      font-weight: 600; font-size: 15px;
-      transition: all .2s; background: transparent;
-      margin-left: 12px;
+      background: var(--purple); color: #fff; text-decoration: none;
+      padding: 12px 28px; border-radius: 50px;
+      font-weight: 700; font-size: 15px;
+      box-shadow: 0 6px 24px rgba(108,99,255,.4);
+      transition: all .2s; border: none; cursor: pointer; width: 100%; justify-content: center;
     }
-    .btn-secondary:hover { border-color: var(--purple); color: var(--purple); }
-    .hero-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .btn-dl-global:hover { background: var(--purple2); transform: translateY(-1px); }
+    .btn-dl-lite {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1.5px solid rgba(78,205,196,.4); color: var(--teal); text-decoration: none;
+      padding: 12px 28px; border-radius: 50px;
+      font-weight: 700; font-size: 15px;
+      transition: all .2s; background: rgba(78,205,196,.06);
+      width: 100%; justify-content: center;
+    }
+    .btn-dl-lite:hover { background: rgba(78,205,196,.14); transform: translateY(-1px); }
     .counter-block {
-      margin-top: 36px;
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(255,255,255,.04); border: 1px solid var(--border);
-      border-radius: 50px; padding: 10px 22px;
-      font-size: 14px; color: var(--muted);
+      border-radius: 50px; padding: 10px 22px; font-size: 14px; color: var(--muted);
     }
     .counter-block strong { color: var(--teal); font-size: 18px; font-weight: 700; }
     .platform-note {
@@ -149,17 +163,13 @@
       font-size: 12px; font-weight: 600; text-transform: uppercase;
       letter-spacing: .06em; margin-bottom: 14px;
     }
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 800; margin-bottom: 12px; line-height: 1.2;
-    }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
     .section-sub { color: var(--muted); font-size: 1.05rem; max-width: 560px; }
 
     /* ── FEATURES ────────────────────────────────────── */
     .features { background: var(--surface); }
     .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px; margin-top: 48px;
     }
     .feature-card {
@@ -168,36 +178,243 @@
       transition: transform .2s, border-color .2s;
     }
     .feature-card:hover { transform: translateY(-4px); border-color: var(--purple); }
-    .feature-icon {
-      width: 52px; height: 52px; border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
-    }
+    .feature-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
     .feature-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
     .feature-card p { color: var(--muted); font-size: .95rem; line-height: 1.6; }
 
-    /* ── HOW TO INSTALL ──────────────────────────────── */
-    .steps { display: flex; flex-direction: column; gap: 20px; margin-top: 48px; }
-    .step {
-      display: flex; gap: 20px; align-items: flex-start;
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 24px 28px;
+    /* ── INTERACTIVE TUTORIAL ────────────────────────── */
+    .install-section { background: var(--surface); }
+    .tutorial-wrap { margin-top: 52px; }
+    .step-tabs {
+      display: flex; gap: 0; border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border); margin-bottom: 32px; width: fit-content;
     }
-    .step-num {
-      min-width: 40px; height: 40px; border-radius: 50%;
-      background: var(--purple); color: #fff;
+    .step-tab {
+      padding: 10px 0; width: 80px; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+      background: var(--card); color: var(--muted);
+      transition: all .2s; border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+    }
+    .step-tab:last-child { border-right: none; }
+    .step-tab .tab-num {
+      width: 28px; height: 28px; border-radius: 50%; background: var(--border);
+      color: var(--muted); font-size: 13px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; transition: all .2s;
+    }
+    .step-tab .tab-label { font-size: 10px; font-weight: 600; color: var(--muted); transition: color .2s; }
+    .step-tab.active { background: rgba(108,99,255,.1); color: var(--purple2); }
+    .step-tab.active .tab-num { background: var(--purple); color: #fff; }
+    .step-tab.active .tab-label { color: var(--purple2); }
+    .step-tab.done .tab-num { background: rgba(78,205,196,.2); color: var(--teal); }
+
+    .tutorial-panel {
+      display: none; animation: fadeIn .35s ease;
+    }
+    .tutorial-panel.active { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: center; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* phone frame */
+    .phone-wrap { display: flex; justify-content: center; }
+    .phone-frame {
+      width: 168px; height: 336px; border-radius: 36px;
+      background: #0a0a0f; border: 3px solid #2a2a3a;
+      position: relative; box-shadow: 0 24px 64px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.06);
+      overflow: hidden; flex-shrink: 0;
+    }
+    .phone-pill {
+      position: absolute; top: 9px; left: 50%; transform: translateX(-50%);
+      width: 44px; height: 7px; background: #1a1a28; border-radius: 4px; z-index: 10;
+    }
+    .phone-screen {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 33px; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    /* Android status bar */
+    .android-bar {
+      height: 28px; background: #000; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 12px 0 12px; flex-shrink: 0;
+      padding-top: 6px;
+    }
+    .android-bar-time { font-size: 9px; font-weight: 700; color: #fff; }
+    .android-bar-icons { display: flex; gap: 3px; align-items: center; }
+    .android-bar-icons span { font-size: 8px; color: #fff; }
+
+    /* step 1 — Chrome download */
+    .s1-body {
+      flex: 1; background: #202124; display: flex; flex-direction: column; overflow: hidden;
+    }
+    .s1-chrome-bar {
+      background: #35363a; height: 28px; display: flex; align-items: center; padding: 0 8px; gap: 4px;
+    }
+    .s1-back { font-size: 14px; color: #aaa; }
+    .s1-url {
+      flex: 1; background: #444; border-radius: 10px; height: 16px;
+      display: flex; align-items: center; padding: 0 6px;
+    }
+    .s1-url span { font-size: 7px; color: #ccc; white-space: nowrap; overflow: hidden; }
+    .s1-webpage {
+      flex: 1; background: #0D0D14; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 4px;
+    }
+    .s1-hero-mini {
+      width: 36px; height: 36px; border-radius: 9px;
+      background: linear-gradient(135deg, #6C63FF, #8B85FF);
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
+    }
+    .s1-title-mini { font-size: 7px; color: #aaa; font-weight: 600; }
+    .s1-dl-bar {
+      background: #292a2d; border-top: 1px solid #444;
+      padding: 6px 8px; display: flex; align-items: center; gap: 6px;
+    }
+    .s1-dl-icon { font-size: 12px; }
+    .s1-dl-info { flex: 1; }
+    .s1-dl-name { font-size: 7px; color: #fff; font-weight: 600; }
+    .s1-dl-prog { height: 2px; background: #555; border-radius: 2px; margin-top: 2px; overflow: hidden; }
+    .s1-dl-fill {
+      height: 100%; background: #4CAF50; border-radius: 2px; width: 0;
+      animation: dlProgress 2.5s ease-in-out infinite;
+    }
+    @keyframes dlProgress { 0% { width: 0; } 70% { width: 100%; } 100% { width: 100%; } }
+    .s1-dl-open { font-size: 7px; color: #8B85FF; font-weight: 700; white-space: nowrap; }
+
+    /* step 2 — Settings */
+    .s2-body { flex: 1; background: #1c1c1e; display: flex; flex-direction: column; overflow: hidden; }
+    .s2-header {
+      background: #2c2c2e; height: 34px; display: flex; align-items: center; padding: 0 8px; gap: 6px;
+      border-bottom: 1px solid #3a3a3c;
+    }
+    .s2-back-arr { font-size: 14px; color: #8B85FF; }
+    .s2-title { font-size: 10px; font-weight: 700; color: #fff; }
+    .s2-list { flex: 1; overflow: hidden; padding: 8px 0; }
+    .s2-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .s2-item-left { display: flex; flex-direction: column; gap: 1px; }
+    .s2-item-title { font-size: 8px; color: #fff; font-weight: 600; }
+    .s2-item-sub { font-size: 6px; color: #888; }
+    .s2-toggle {
+      width: 24px; height: 14px; border-radius: 7px; position: relative;
+      transition: background .3s;
+    }
+    .s2-toggle.on { background: var(--purple); }
+    .s2-toggle.off { background: #555; }
+    .s2-toggle::after {
+      content: ''; position: absolute; top: 2px; width: 10px; height: 10px;
+      border-radius: 50%; background: #fff; transition: left .3s;
+    }
+    .s2-toggle.on::after { left: 12px; }
+    .s2-toggle.off::after { left: 2px; }
+    .s2-info-box {
+      margin: 6px 10px; background: rgba(108,99,255,.1); border-radius: 8px;
+      padding: 5px 7px; font-size: 6px; color: #9090c0; line-height: 1.5;
+    }
+
+    /* step 3 — Install dialog */
+    .s3-body { flex: 1; background: rgba(0,0,0,.7); display: flex; flex-direction: column; justify-content: flex-end; }
+    .s3-bg { flex: 1; background: #1a1a2e; }
+    .s3-dialog {
+      background: #2a2a3e; border-radius: 14px 14px 0 0; padding: 14px 12px 10px;
+    }
+    .s3-dialog-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .s3-app-icon {
+      width: 32px; height: 32px; border-radius: 9px;
+      background: linear-gradient(135deg, #6C63FF, #FF6B9D);
+      display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
+    }
+    .s3-dialog-title { font-size: 9px; font-weight: 800; color: #fff; }
+    .s3-dialog-sub { font-size: 7px; color: #888; margin-top: 1px; }
+    .s3-perms { margin-bottom: 10px; }
+    .s3-perm { display: flex; align-items: center; gap: 5px; padding: 3px 0; }
+    .s3-perm-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+    .s3-perm-text { font-size: 6px; color: #aaa; }
+    .s3-btns { display: flex; gap: 8px; justify-content: flex-end; }
+    .s3-btn-cancel { font-size: 9px; font-weight: 700; color: var(--muted); padding: 5px 8px; }
+    .s3-btn-install {
+      font-size: 9px; font-weight: 700; color: #fff; background: var(--purple);
+      padding: 5px 12px; border-radius: 8px;
+    }
+
+    /* step 4 — Permissions */
+    .s4-body { flex: 1; background: #0D0D14; display: flex; flex-direction: column; overflow: hidden; }
+    .s4-header { background: #6C63FF; height: 44px; display: flex; align-items: flex-end; padding: 0 10px 8px; }
+    .s4-header-title { font-size: 11px; font-weight: 800; color: #fff; }
+    .s4-perm-card {
+      margin: 10px 8px; background: #1e1e30; border-radius: 12px; padding: 10px 10px 8px;
+      border: 1px solid #2a2a40;
+    }
+    .s4-perm-title { font-size: 8px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .s4-perm-desc { font-size: 6px; color: #888; line-height: 1.5; margin-bottom: 8px; }
+    .s4-perm-row { display: flex; align-items: center; justify-content: space-between; }
+    .s4-perm-app { font-size: 7px; color: #ddd; font-weight: 600; }
+    .s4-toggle {
+      width: 28px; height: 15px; border-radius: 8px; background: var(--purple);
+      position: relative;
+    }
+    .s4-toggle::after {
+      content: ''; position: absolute; top: 2px; right: 2px;
+      width: 11px; height: 11px; border-radius: 50%; background: #fff;
+      animation: toggleAnim 2s ease-in-out infinite;
+    }
+    @keyframes toggleAnim {
+      0%,40% { right: 15px; background: #888; }
+      50%,100% { right: 2px; background: #fff; }
+    }
+    .s4-float-btn {
+      position: absolute; right: 12px; bottom: 60px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--purple); box-shadow: 0 4px 16px rgba(108,99,255,.6);
       display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 16px;
+      font-size: 14px;
+      animation: floatBtn 2s ease-in-out infinite;
     }
-    .step-content h4 { font-weight: 700; margin-bottom: 6px; }
-    .step-content p { color: var(--muted); font-size: .95rem; }
-    .step-content code {
-      background: rgba(108,99,255,.15); color: var(--purple2);
-      padding: 2px 8px; border-radius: 6px; font-size: .9rem;
+    @keyframes floatBtn {
+      0%,100% { transform: translateY(0); box-shadow: 0 4px 16px rgba(108,99,255,.6); }
+      50% { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(108,99,255,.8); }
+    }
+
+    /* tutorial text side */
+    .tutorial-text { }
+    .tutorial-step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--purple); color: #fff; font-size: 18px; font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .tutorial-text h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; }
+    .tutorial-text p { color: var(--muted); font-size: .97rem; line-height: 1.7; margin-bottom: 16px; }
+    .tip-box {
+      background: rgba(108,99,255,.08); border: 1px solid rgba(108,99,255,.2);
+      border-radius: 12px; padding: 12px 16px;
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+    .tip-box .tip-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+    .tip-box p { margin: 0; font-size: .88rem; color: var(--purple2); }
+
+    .tutorial-nav { display: flex; align-items: center; gap: 12px; margin-top: 28px; }
+    .tnav-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 20px; border-radius: 50px; border: 1.5px solid var(--border);
+      background: transparent; color: var(--muted); font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 600; cursor: pointer; transition: all .2s;
+    }
+    .tnav-btn:hover:not(:disabled) { border-color: var(--purple); color: var(--purple2); }
+    .tnav-btn:disabled { opacity: .3; cursor: default; }
+    .tnav-btn.primary { background: var(--purple); border-color: var(--purple); color: #fff; }
+    .tnav-btn.primary:hover { background: var(--purple2); }
+    .tnav-dots { display: flex; gap: 6px; }
+    .tnav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); transition: all .2s; }
+    .tnav-dot.active { background: var(--purple); width: 20px; border-radius: 4px; }
+
+    @media (max-width: 700px) {
+      .tutorial-panel.active { grid-template-columns: 1fr; }
+      .phone-wrap { order: -1; }
     }
 
     /* ── SAFETY ──────────────────────────────────────── */
-    .safety { background: var(--surface); }
+    .safety { }
     .safety-card {
       display: flex; gap: 28px; align-items: center;
       background: var(--card); border: 1px solid var(--border);
@@ -207,8 +424,7 @@
     .safety-icon {
       width: 64px; height: 64px; border-radius: 18px;
       background: rgba(78,205,196,.12);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
     .safety-text { flex: 1; min-width: 200px; }
     .safety-text h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
@@ -224,8 +440,7 @@
 
     /* ── SPECS ───────────────────────────────────────── */
     .specs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 16px; margin-top: 48px;
     }
     .spec-card {
@@ -238,11 +453,7 @@
     .spec-card div span { color: var(--muted); font-size: .85rem; }
 
     /* ── FOOTER ──────────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 24px;
-      text-align: center;
-    }
+    footer { border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; }
     .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 20px; }
     .footer-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
     .footer-links a:hover { color: var(--purple2); }
@@ -250,8 +461,9 @@
 
     @media (max-width: 600px) {
       nav { padding: 12px 16px; }
-      .btn-primary, .btn-secondary { width: 100%; justify-content: center; margin: 0; }
+      .apk-card { min-width: 160px; }
       .safety-card { flex-direction: column; }
+      .step-tab { width: 64px; }
     }
   </style>
 </head>
@@ -284,23 +496,55 @@
      data-en="One tap and any animated sticker from TikTok or Instagram is saved to your collection, ready for WhatsApp and Telegram.">
     Un toque y cualquier sticker animado de TikTok o Instagram queda guardado en tu colección, listo para WhatsApp y Telegram.
   </p>
-  <div class="hero-btns">
-    <a class="btn-primary" id="downloadBtn" href="assets/stickergrab-v1.0.0.apk" download onclick="trackDownload()">
-      <i data-lucide="download" style="width:20px;height:20px"></i>
-      <span data-es="Descargar APK" data-en="Download APK">Descargar APK</span>
-    </a>
-    <a class="btn-secondary" href="#install">
-      <i data-lucide="book-open" style="width:16px;height:16px"></i>
-      <span data-es="Cómo instalar" data-en="How to install">Cómo instalar</span>
-    </a>
+
+  <!-- APK download cards -->
+  <div class="apk-cards">
+    <div class="apk-card global">
+      <div class="apk-rec" data-es="⭐ Recomendado" data-en="⭐ Recommended">⭐ Recomendado</div>
+      <div class="apk-label" data-es="APK Global" data-en="APK Global">APK Global</div>
+      <div class="apk-tags">
+        <span class="apk-tag tag-purple">Google Services</span>
+        <span class="apk-tag tag-gray">~25 MB</span>
+      </div>
+      <div class="apk-meta" data-es="Para la mayoría de dispositivos" data-en="For most devices">Para la mayoría de dispositivos</div>
+      <!-- Replace URL with GitHub Releases URL once you upload the APK -->
+      <a class="btn-dl-global" id="dlGlobal"
+         href="https://github.com/LUANPELO/sticker_save/releases/latest/download/stickergrab-v1.0.0.apk"
+         download onclick="trackDownload()">
+        <i data-lucide="download" style="width:17px;height:17px"></i>
+        <span data-es="Descargar" data-en="Download">Descargar</span>
+      </a>
+    </div>
+
+    <div class="apk-card lite">
+      <div class="apk-label" data-es="APK Lite" data-en="APK Lite">APK Lite</div>
+      <div class="apk-tags">
+        <span class="apk-tag tag-teal" data-es="Sin Google Services" data-en="No Google Services">Sin Google Services</span>
+        <span class="apk-tag tag-gray">~18 MB</span>
+      </div>
+      <div class="apk-meta" data-es="Huawei · Samsung sin Play Store" data-en="Huawei · Samsung without Play Store">Huawei · Samsung sin Play Store</div>
+      <a class="btn-dl-lite" id="dlLite"
+         href="https://github.com/LUANPELO/sticker_save/releases/latest/download/stickergrab-lite-v1.0.0.apk"
+         download onclick="trackDownload()">
+        <i data-lucide="download" style="width:17px;height:17px"></i>
+        <span data-es="Descargar" data-en="Download">Descargar</span>
+      </a>
+    </div>
   </div>
+
   <div class="counter-block">
     <i data-lucide="download-cloud" style="width:16px;height:16px"></i>
-    <span data-es="Descargas" data-en="Downloads">Descargas</span>:&nbsp;<strong id="dlCount">–</strong>
+    <span data-es="Descargas totales" data-en="Total downloads">Descargas totales</span>:&nbsp;<strong id="dlCount">–</strong>
   </div>
   <p class="platform-note">
     <i data-lucide="smartphone" style="width:14px;height:14px"></i>
     <span data-es="Android 8.0+ · Gratis · Sin suscripción" data-en="Android 8.0+ · Free · No subscription">Android 8.0+ · Gratis · Sin suscripción</span>
+  </p>
+  <p class="platform-note" style="margin-top:8px">
+    <i data-lucide="github" style="width:14px;height:14px"></i>
+    <a href="https://github.com/LUANPELO/sticker_save/releases" target="_blank" rel="noopener"
+       style="color:var(--muted);text-decoration:none;"
+       data-es="Ver todas las versiones en GitHub" data-en="See all releases on GitHub">Ver todas las versiones en GitHub</a>
   </p>
 </section>
 
@@ -310,7 +554,6 @@
     <span class="section-tag" data-es="Funciones" data-en="Features">Funciones</span>
     <h2 class="section-title" data-es="Todo lo que necesitas" data-en="Everything you need">Todo lo que necesitas</h2>
     <p class="section-sub" data-es="Captura, guarda y comparte. Sin complicaciones." data-en="Capture, save and share. No complications.">Captura, guarda y comparte. Sin complicaciones.</p>
-
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon" style="background:rgba(108,99,255,.15)">
@@ -358,43 +601,265 @@
   </div>
 </section>
 
-<!-- ── HOW TO INSTALL ────────────────────────────────────────── -->
-<section id="install">
+<!-- ── INTERACTIVE TUTORIAL ──────────────────────────────────── -->
+<section class="install-section" id="install">
   <div class="container">
     <span class="section-tag" data-es="Instalación" data-en="Installation">Instalación</span>
-    <h2 class="section-title" data-es="Cómo instalar el APK" data-en="How to install the APK">Cómo instalar el APK</h2>
-    <p class="section-sub" data-es="Solo Android — 4 pasos simples." data-en="Android only — 4 simple steps.">Solo Android — 4 pasos simples.</p>
+    <h2 class="section-title" data-es="Cómo instalar StickerGrab" data-en="How to install StickerGrab">Cómo instalar StickerGrab</h2>
+    <p class="section-sub" data-es="Sigue estos 4 pasos — tarda menos de 2 minutos." data-en="Follow these 4 steps — takes less than 2 minutes.">Sigue estos 4 pasos — tarda menos de 2 minutos.</p>
 
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <h4 data-es="Descarga el APK" data-en="Download the APK">Descarga el APK</h4>
-          <p data-es="Toca el botón «Descargar APK» y espera a que el archivo termine de descargarse en tu dispositivo Android." data-en="Tap the «Download APK» button and wait for the file to finish downloading on your Android device.">Toca el botón «Descargar APK» y espera a que el archivo termine de descargarse en tu dispositivo Android.</p>
+    <div class="tutorial-wrap">
+      <!-- Step tabs -->
+      <div class="step-tabs">
+        <button class="step-tab active" onclick="goStep(1)">
+          <span class="tab-num">1</span>
+          <span class="tab-label" data-es="Descarga" data-en="Download">Descarga</span>
+        </button>
+        <button class="step-tab" onclick="goStep(2)">
+          <span class="tab-num">2</span>
+          <span class="tab-label" data-es="Ajustes" data-en="Settings">Ajustes</span>
+        </button>
+        <button class="step-tab" onclick="goStep(3)">
+          <span class="tab-num">3</span>
+          <span class="tab-label" data-es="Instala" data-en="Install">Instala</span>
+        </button>
+        <button class="step-tab" onclick="goStep(4)">
+          <span class="tab-num">4</span>
+          <span class="tab-label" data-es="Permisos" data-en="Permissions">Permisos</span>
+        </button>
+      </div>
+
+      <!-- ── STEP 1 ── -->
+      <div class="tutorial-panel active" id="step-1">
+        <div class="phone-wrap">
+          <div class="phone-frame">
+            <div class="phone-pill"></div>
+            <div class="phone-screen">
+              <!-- Android status bar -->
+              <div class="android-bar">
+                <span class="android-bar-time">9:41</span>
+                <div class="android-bar-icons">
+                  <span>▲</span><span>●●●●</span><span>🔋</span>
+                </div>
+              </div>
+              <!-- Chrome body -->
+              <div class="s1-body">
+                <div class="s1-chrome-bar">
+                  <span class="s1-back">‹</span>
+                  <div class="s1-url">
+                    <span>luanpelo.github.io/stickergrab</span>
+                  </div>
+                </div>
+                <div class="s1-webpage">
+                  <div class="s1-hero-mini">🦎</div>
+                  <span class="s1-title-mini">StickerGrab</span>
+                </div>
+                <!-- Download bar at bottom -->
+                <div class="s1-dl-bar">
+                  <span class="s1-dl-icon">📥</span>
+                  <div class="s1-dl-info">
+                    <div class="s1-dl-name">stickergrab-v1.0.0.apk</div>
+                    <div class="s1-dl-prog"><div class="s1-dl-fill"></div></div>
+                  </div>
+                  <span class="s1-dl-open">ABRIR</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tutorial-text">
+          <div class="tutorial-step-num">1</div>
+          <h3 data-es="Descarga el APK" data-en="Download the APK">Descarga el APK</h3>
+          <p data-es="Toca el botón <strong>«Descargar APK Global»</strong> arriba en esta página. Chrome te pedirá confirmación — acepta. El archivo se descargará en tu carpeta <em>Descargas</em> en pocos segundos." data-en="Tap the <strong>«Download APK Global»</strong> button above on this page. Chrome will ask for confirmation — accept. The file will download to your <em>Downloads</em> folder in a few seconds.">Toca el botón <strong>«Descargar APK Global»</strong> arriba en esta página. Chrome te pedirá confirmación — acepta. El archivo se descargará en tu carpeta <em>Descargas</em> en pocos segundos.</p>
+          <div class="tip-box">
+            <span class="tip-icon">💡</span>
+            <p data-es="Si tu teléfono es Huawei o no tiene Play Store, descarga la <strong>APK Lite</strong> — funciona igual sin Google Services." data-en="If your phone is Huawei or doesn't have Play Store, download <strong>APK Lite</strong> — works the same without Google Services.">Si tu teléfono es Huawei o no tiene Play Store, descarga la <strong>APK Lite</strong> — funciona igual sin Google Services.</p>
+          </div>
+          <div class="tutorial-nav">
+            <button class="tnav-btn" onclick="prevStep()" disabled>← <span data-es="Anterior" data-en="Prev">Anterior</span></button>
+            <div class="tnav-dots">
+              <div class="tnav-dot active"></div><div class="tnav-dot"></div>
+              <div class="tnav-dot"></div><div class="tnav-dot"></div>
+            </div>
+            <button class="tnav-btn primary" onclick="nextStep()"><span data-es="Siguiente" data-en="Next">Siguiente</span> →</button>
+          </div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <h4 data-es="Permite instalar apps externas" data-en="Allow installing external apps">Permite instalar apps externas</h4>
-          <p data-es="Ve a <strong>Ajustes → Seguridad → Instalar apps desconocidas</strong> y actívalo para tu navegador (Chrome, Firefox, etc.). En Android 13+ puede pedirte esto automáticamente al abrir el APK." data-en="Go to <strong>Settings → Security → Install unknown apps</strong> and enable it for your browser (Chrome, Firefox, etc.). On Android 13+ it may ask you automatically when opening the APK.">Ve a <strong>Ajustes → Seguridad → Instalar apps desconocidas</strong> y actívalo para tu navegador. En Android 13+ puede pedirte esto automáticamente al abrir el APK.</p>
+
+      <!-- ── STEP 2 ── -->
+      <div class="tutorial-panel" id="step-2">
+        <div class="phone-wrap">
+          <div class="phone-frame">
+            <div class="phone-pill"></div>
+            <div class="phone-screen">
+              <div class="android-bar">
+                <span class="android-bar-time">9:42</span>
+                <div class="android-bar-icons"><span>▲</span><span>●●●●</span><span>🔋</span></div>
+              </div>
+              <div class="s2-body">
+                <div class="s2-header">
+                  <span class="s2-back-arr">‹</span>
+                  <span class="s2-title" data-es="Instalar apps desconocidas" data-en="Install unknown apps">Instalar apps desconocidas</span>
+                </div>
+                <div class="s2-list">
+                  <div class="s2-item" style="background:rgba(108,99,255,.06)">
+                    <div class="s2-item-left">
+                      <span class="s2-item-title">Chrome</span>
+                      <span class="s2-item-sub" data-es="Se permite instalar desde aquí" data-en="Allowed to install from here">Se permite instalar desde aquí</span>
+                    </div>
+                    <div class="s2-toggle on"></div>
+                  </div>
+                  <div class="s2-item">
+                    <div class="s2-item-left">
+                      <span class="s2-item-title">Samsung Browser</span>
+                      <span class="s2-item-sub" data-es="No permitido" data-en="Not allowed">No permitido</span>
+                    </div>
+                    <div class="s2-toggle off"></div>
+                  </div>
+                  <div class="s2-item">
+                    <div class="s2-item-left">
+                      <span class="s2-item-title">Files</span>
+                      <span class="s2-item-sub" data-es="No permitido" data-en="Not allowed">No permitido</span>
+                    </div>
+                    <div class="s2-toggle off"></div>
+                  </div>
+                </div>
+                <div class="s2-info-box" data-es="Activar esto permite que esta app instale otras aplicaciones. Solo actívalo para apps de confianza." data-en="Enabling this allows this app to install other apps. Only enable it for trusted apps.">Activar esto permite que esta app instale otras aplicaciones. Solo actívalo para apps de confianza.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tutorial-text">
+          <div class="tutorial-step-num">2</div>
+          <h3 data-es="Activa apps de fuentes externas" data-en="Enable apps from external sources">Activa apps de fuentes externas</h3>
+          <p data-es="Android bloquea APKs externos por defecto. Ve a <strong>Ajustes → Seguridad → Instalar apps desconocidas</strong>, selecciona <strong>Chrome</strong> y activa el permiso." data-en="Android blocks external APKs by default. Go to <strong>Settings → Security → Install unknown apps</strong>, select <strong>Chrome</strong> and enable the permission.">Android bloquea APKs externos por defecto. Ve a <strong>Ajustes → Seguridad → Instalar apps desconocidas</strong>, selecciona <strong>Chrome</strong> y activa el permiso.</p>
+          <div class="tip-box">
+            <span class="tip-icon">⚡</span>
+            <p data-es="En Android 13 y 14, al tocar el APK descargado Android te lleva directo a esta pantalla — no tienes que buscarla tú mismo." data-en="On Android 13 and 14, tapping the downloaded APK takes you directly to this screen — you don't have to search for it.">En Android 13 y 14, al tocar el APK descargado Android te lleva directo a esta pantalla — no tienes que buscarla tú mismo.</p>
+          </div>
+          <div class="tutorial-nav">
+            <button class="tnav-btn" onclick="prevStep()">← <span data-es="Anterior" data-en="Prev">Anterior</span></button>
+            <div class="tnav-dots">
+              <div class="tnav-dot done"></div><div class="tnav-dot active"></div>
+              <div class="tnav-dot"></div><div class="tnav-dot"></div>
+            </div>
+            <button class="tnav-btn primary" onclick="nextStep()"><span data-es="Siguiente" data-en="Next">Siguiente</span> →</button>
+          </div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <h4 data-es="Abre el archivo descargado" data-en="Open the downloaded file">Abre el archivo descargado</h4>
-          <p data-es="En las notificaciones o en la carpeta <code>Descargas</code> de tu teléfono, toca el archivo <code>stickergrab-v1.0.0.apk</code> para iniciar la instalación." data-en="In the notifications or in your phone's <code>Downloads</code> folder, tap the <code>stickergrab-v1.0.0.apk</code> file to start the installation.">En las notificaciones o en la carpeta <code>Descargas</code>, toca el archivo <code>stickergrab-v1.0.0.apk</code>.</p>
+
+      <!-- ── STEP 3 ── -->
+      <div class="tutorial-panel" id="step-3">
+        <div class="phone-wrap">
+          <div class="phone-frame">
+            <div class="phone-pill"></div>
+            <div class="phone-screen">
+              <div class="android-bar">
+                <span class="android-bar-time">9:43</span>
+                <div class="android-bar-icons"><span>▲</span><span>●●●●</span><span>🔋</span></div>
+              </div>
+              <div class="s3-body">
+                <div class="s3-bg"></div>
+                <div class="s3-dialog">
+                  <div class="s3-dialog-top">
+                    <div class="s3-app-icon">🦎</div>
+                    <div>
+                      <div class="s3-dialog-title" data-es="¿Instalar StickerGrab?" data-en="Install StickerGrab?">¿Instalar StickerGrab?</div>
+                      <div class="s3-dialog-sub" data-es="com.stickerplus.sticker_save" data-en="com.stickerplus.sticker_save">com.stickerplus.sticker_save</div>
+                    </div>
+                  </div>
+                  <div class="s3-perms">
+                    <div class="s3-perm"><div class="s3-perm-dot"></div><span class="s3-perm-text" data-es="Mostrar encima de otras apps" data-en="Display over other apps">Mostrar encima de otras apps</span></div>
+                    <div class="s3-perm"><div class="s3-perm-dot"></div><span class="s3-perm-text" data-es="Captura de pantalla" data-en="Screen capture">Captura de pantalla</span></div>
+                    <div class="s3-perm"><div class="s3-perm-dot"></div><span class="s3-perm-text" data-es="Almacenamiento" data-en="Storage">Almacenamiento</span></div>
+                  </div>
+                  <div class="s3-btns">
+                    <span class="s3-btn-cancel" data-es="CANCELAR" data-en="CANCEL">CANCELAR</span>
+                    <span class="s3-btn-install" data-es="INSTALAR" data-en="INSTALL">INSTALAR</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tutorial-text">
+          <div class="tutorial-step-num">3</div>
+          <h3 data-es="Instala la aplicación" data-en="Install the application">Instala la aplicación</h3>
+          <p data-es="Abre el APK desde la barra de descargas de Chrome o desde tu carpeta <strong>Descargas</strong>. Android mostrará un diálogo de confirmación — toca <strong>INSTALAR</strong> y espera unos segundos." data-en="Open the APK from Chrome's download bar or from your <strong>Downloads</strong> folder. Android will show a confirmation dialog — tap <strong>INSTALL</strong> and wait a few seconds.">Abre el APK desde la barra de descargas de Chrome o desde tu carpeta <strong>Descargas</strong>. Android mostrará un diálogo de confirmación — toca <strong>INSTALAR</strong> y espera unos segundos.</p>
+          <div class="tip-box">
+            <span class="tip-icon">🔒</span>
+            <p data-es="Si ves «Aplicación bloqueada por Play Protect», toca <strong>Más información → Instalar de todas formas</strong>. Es normal para APKs fuera de Play Store." data-en="If you see «App blocked by Play Protect», tap <strong>More info → Install anyway</strong>. This is normal for APKs outside Play Store.">Si ves «Aplicación bloqueada por Play Protect», toca <strong>Más información → Instalar de todas formas</strong>. Es normal para APKs fuera de Play Store.</p>
+          </div>
+          <div class="tutorial-nav">
+            <button class="tnav-btn" onclick="prevStep()">← <span data-es="Anterior" data-en="Prev">Anterior</span></button>
+            <div class="tnav-dots">
+              <div class="tnav-dot done"></div><div class="tnav-dot done"></div>
+              <div class="tnav-dot active"></div><div class="tnav-dot"></div>
+            </div>
+            <button class="tnav-btn primary" onclick="nextStep()"><span data-es="Siguiente" data-en="Next">Siguiente</span> →</button>
+          </div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <h4 data-es="Abre StickerGrab y da los permisos" data-en="Open StickerGrab and grant permissions">Abre StickerGrab y da los permisos</h4>
-          <p data-es="La app te guiará para otorgar los permisos necesarios: <strong>Overlay</strong> (para el botón flotante) y <strong>Captura de pantalla</strong> (para los stickers). Ambos son esenciales para que funcione." data-en="The app will guide you to grant the necessary permissions: <strong>Overlay</strong> (for the floating button) and <strong>Screen capture</strong> (for stickers). Both are essential for it to work.">La app te guiará para otorgar los permisos: <strong>Overlay</strong> (botón flotante) y <strong>Captura de pantalla</strong>.</p>
+
+      <!-- ── STEP 4 ── -->
+      <div class="tutorial-panel" id="step-4">
+        <div class="phone-wrap">
+          <div class="phone-frame" style="position:relative">
+            <div class="phone-pill"></div>
+            <div class="phone-screen">
+              <div class="android-bar">
+                <span class="android-bar-time">9:44</span>
+                <div class="android-bar-icons"><span>▲</span><span>●●●●</span><span>🔋</span></div>
+              </div>
+              <div class="s4-body">
+                <div class="s4-header">
+                  <span class="s4-header-title">StickerGrab</span>
+                </div>
+                <!-- Overlay permission card -->
+                <div class="s4-perm-card">
+                  <div class="s4-perm-title" data-es="Permiso de superposición" data-en="Overlay permission">Permiso de superposición</div>
+                  <div class="s4-perm-desc" data-es="StickerGrab necesita mostrarse encima de TikTok e Instagram para que el botón flotante funcione." data-en="StickerGrab needs to show over TikTok and Instagram for the floating button to work.">StickerGrab necesita mostrarse encima de TikTok e Instagram para que el botón flotante funcione.</div>
+                  <div class="s4-perm-row">
+                    <span class="s4-perm-app">StickerGrab</span>
+                    <div class="s4-toggle"></div>
+                  </div>
+                </div>
+                <!-- Screen capture card -->
+                <div class="s4-perm-card">
+                  <div class="s4-perm-title" data-es="Captura de pantalla" data-en="Screen capture">Captura de pantalla</div>
+                  <div class="s4-perm-desc" data-es="Necesario para capturar los stickers. StickerGrab solo captura cuando tú lo solicitas." data-en="Needed to capture stickers. StickerGrab only captures when you request it.">Necesario para capturar los stickers. StickerGrab solo captura cuando tú lo solicitas.</div>
+                </div>
+              </div>
+            </div>
+            <!-- Floating button preview -->
+            <div class="s4-float-btn">⚡</div>
+          </div>
+        </div>
+        <div class="tutorial-text">
+          <div class="tutorial-step-num">4</div>
+          <h3 data-es="Concede los permisos" data-en="Grant the permissions">Concede los permisos</h3>
+          <p data-es="Al abrir StickerGrab por primera vez, la app te guiará para activar dos permisos esenciales:<br><br>• <strong>Superposición (Overlay)</strong> — para que el botón flotante aparezca sobre TikTok e Instagram.<br>• <strong>Captura de pantalla</strong> — para tomar la foto del sticker cuando lo tocas." data-en="When you open StickerGrab for the first time, the app will guide you to enable two essential permissions:<br><br>• <strong>Overlay</strong> — so the floating button appears over TikTok and Instagram.<br>• <strong>Screen capture</strong> — to take a photo of the sticker when you tap it.">Al abrir StickerGrab por primera vez, la app te guiará para activar dos permisos esenciales:<br><br>• <strong>Superposición (Overlay)</strong> — para que el botón flotante aparezca sobre TikTok e Instagram.<br>• <strong>Captura de pantalla</strong> — para tomar la foto del sticker cuando lo tocas.</p>
+          <div class="tip-box">
+            <span class="tip-icon">🎉</span>
+            <p data-es="¡Listo! Abre TikTok o Instagram, busca un sticker y toca el botón morado flotante para capturarlo." data-en="Done! Open TikTok or Instagram, find a sticker, and tap the floating purple button to capture it.">¡Listo! Abre TikTok o Instagram, busca un sticker y toca el botón morado flotante para capturarlo.</p>
+          </div>
+          <div class="tutorial-nav">
+            <button class="tnav-btn" onclick="prevStep()">← <span data-es="Anterior" data-en="Prev">Anterior</span></button>
+            <div class="tnav-dots">
+              <div class="tnav-dot done"></div><div class="tnav-dot done"></div>
+              <div class="tnav-dot done"></div><div class="tnav-dot active"></div>
+            </div>
+            <a class="tnav-btn primary" href="#" style="text-decoration:none"
+               id="finalDownloadBtn"
+               href="https://github.com/LUANPELO/sticker_save/releases/latest/download/stickergrab-v1.0.0.apk">
+              <i data-lucide="download" style="width:15px;height:15px"></i>
+              <span data-es="Descargar APK" data-en="Download APK">Descargar APK</span>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+
+    </div><!-- tutorial-wrap -->
   </div>
 </section>
 
@@ -412,7 +877,6 @@
         <h3 data-es="Verificado con VirusTotal" data-en="Verified with VirusTotal">Verificado con VirusTotal</h3>
         <p data-es="VirusTotal analiza el archivo con más de 70 motores antivirus en tiempo real. Puedes comprobar el resultado tú mismo antes de instalar." data-en="VirusTotal analyzes the file with more than 70 antivirus engines in real time. You can check the result yourself before installing.">VirusTotal analiza el archivo con más de 70 motores antivirus. Puedes comprobar el resultado tú mismo.</p>
       </div>
-      <!-- Replace href with actual VirusTotal scan URL after uploading the APK -->
       <a class="vt-btn" href="#" target="_blank" rel="noopener">
         <i data-lucide="external-link" style="width:16px;height:16px"></i>
         <span data-es="Ver análisis" data-en="View analysis">Ver análisis</span>
@@ -433,7 +897,7 @@
       </div>
       <div class="spec-card">
         <i data-lucide="hard-drive" style="width:24px;height:24px"></i>
-        <div><strong data-es="~25 MB" data-en="~25 MB">~25 MB</strong><span data-es="Tamaño de instalación" data-en="Installation size">Tamaño de instalación</span></div>
+        <div><strong>~25 MB</strong><span data-es="Tamaño de instalación" data-en="Installation size">Tamaño de instalación</span></div>
       </div>
       <div class="spec-card">
         <i data-lucide="wifi-off" style="width:24px;height:24px"></i>
@@ -442,6 +906,14 @@
       <div class="spec-card">
         <i data-lucide="tag" style="width:24px;height:24px"></i>
         <div><strong data-es="Gratis" data-en="Free">Gratis</strong><span data-es="Sin suscripción" data-en="No subscription">Sin suscripción</span></div>
+      </div>
+      <div class="spec-card">
+        <i data-lucide="package" style="width:24px;height:24px"></i>
+        <div><strong data-es="2 versiones" data-en="2 versions">2 versiones</strong><span data-es="Global y Lite" data-en="Global and Lite">Global y Lite</span></div>
+      </div>
+      <div class="spec-card">
+        <i data-lucide="cpu" style="width:24px;height:24px"></i>
+        <div><strong>arm64 / arm</strong><span data-es="Todos los procesadores" data-en="All processors">Todos los procesadores</span></div>
       </div>
     </div>
   </div>
@@ -453,62 +925,82 @@
   <div class="footer-links">
     <a href="terminos/" data-es="Términos y condiciones" data-en="Terms &amp; Conditions">Términos y condiciones</a>
     <a href="privacidad/" data-es="Política de privacidad" data-en="Privacy Policy">Política de privacidad</a>
+    <a href="https://github.com/LUANPELO/sticker_save/releases" target="_blank" rel="noopener" data-es="GitHub Releases" data-en="GitHub Releases">GitHub Releases</a>
     <a href="mailto:soporte@velxos.com" data-es="Contacto" data-en="Contact">Contacto</a>
   </div>
   <p class="footer-copy">© 2026 Velxos · StickerGrab</p>
 </footer>
 
 <script>
-  // ── Lucide icons init
   lucide.createIcons();
 
-  // ── Language toggle
+  // ── Language ──────────────────────────────────────────────
   const LANG_KEY = 'sg_lang';
   function setLang(lang) {
     localStorage.setItem(LANG_KEY, lang);
     document.documentElement.lang = lang;
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+    document.querySelectorAll('.lang-btn').forEach(b =>
+      b.classList.toggle('active', b.textContent === lang.toUpperCase())
+    );
     document.querySelectorAll('[data-es],[data-en]').forEach(el => {
       const txt = el.getAttribute('data-' + lang);
       if (txt) el.innerHTML = txt;
     });
+    lucide.createIcons();
   }
   const savedLang = localStorage.getItem(LANG_KEY) || (navigator.language.startsWith('en') ? 'en' : 'es');
   setLang(savedLang);
 
-  // ── Download counter via Firebase Realtime Database REST
-  // TODO: Replace with your Firebase Realtime Database URL
-  // In Firebase console → Realtime Database → Create database
-  // Rules: { "rules": { "downloads": { ".read": true, ".write": true } } }
-  const FIREBASE_DB_URL = 'https://YOUR-PROJECT-default-rtdb.firebaseio.com/stickergrab/downloads.json';
-
+  // ── Download counter — GitHub Releases API ────────────────
   async function loadCounter() {
+    const el = document.getElementById('dlCount');
     try {
-      const r = await fetch(FIREBASE_DB_URL);
-      const val = await r.json();
-      document.getElementById('dlCount').textContent = (val || 0).toLocaleString();
+      const r = await fetch('https://api.github.com/repos/LUANPELO/sticker_save/releases', {
+        headers: { 'Accept': 'application/vnd.github.v3+json' }
+      });
+      if (!r.ok) throw new Error();
+      const releases = await r.json();
+      if (!Array.isArray(releases)) throw new Error();
+      let total = 0;
+      releases.forEach(rel => {
+        (rel.assets || []).forEach(a => { total += (a.download_count || 0); });
+      });
+      el.textContent = total > 0 ? total.toLocaleString() : '¡Sé el primero!';
     } catch {
-      document.getElementById('dlCount').textContent = '1,000+';
+      el.textContent = '—';
     }
   }
+  loadCounter();
 
-  async function trackDownload() {
-    const KEY = 'sg_downloaded';
-    if (localStorage.getItem(KEY)) return;
-    localStorage.setItem(KEY, '1');
-    try {
-      const r = await fetch(FIREBASE_DB_URL);
-      const current = (await r.json()) || 0;
-      await fetch(FIREBASE_DB_URL, {
-        method: 'PUT',
-        body: JSON.stringify(current + 1),
-        headers: { 'Content-Type': 'application/json' }
-      });
-      document.getElementById('dlCount').textContent = (current + 1).toLocaleString();
-    } catch { /* silent */ }
+  function trackDownload() { /* GitHub Releases tracks downloads automatically */ }
+
+  // ── Tutorial stepper ──────────────────────────────────────
+  let currentStep = 1;
+  const totalSteps = 4;
+
+  function goStep(n) {
+    document.getElementById('step-' + currentStep).classList.remove('active');
+    document.querySelectorAll('.step-tab')[currentStep - 1].classList.remove('active');
+
+    currentStep = n;
+
+    document.getElementById('step-' + currentStep).classList.add('active');
+    const tabs = document.querySelectorAll('.step-tab');
+    tabs.forEach((t, i) => {
+      t.classList.toggle('active', i === currentStep - 1);
+      t.classList.toggle('done', i < currentStep - 1);
+    });
+    // re-apply language to new panel
+    const lang = localStorage.getItem(LANG_KEY) || 'es';
+    document.querySelectorAll('[data-es],[data-en]').forEach(el => {
+      const txt = el.getAttribute('data-' + lang);
+      if (txt) el.innerHTML = txt;
+    });
+    lucide.createIcons();
   }
 
-  loadCounter();
+  function nextStep() { if (currentStep < totalSteps) goStep(currentStep + 1); }
+  function prevStep() { if (currentStep > 1) goStep(currentStep - 1); }
 </script>
 </body>
 </html>
