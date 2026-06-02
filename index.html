@@ -667,7 +667,7 @@
       <div class="apk-meta" data-es="Para la mayoría de dispositivos" data-en="For most devices">Para la mayoría de dispositivos</div>
       <!-- Replace URL with GitHub Releases URL once you upload the APK -->
       <a class="btn-dl-global" id="dlGlobal"
-         href="https://github.com/LUANPELO/sticker_save/releases/latest/download/stickergrab-v1.0.0.apk"
+         href="https://github.com/LUANPELO/stickergrab-releases/releases/latest/download/stickergrab-v1.0.0.apk"
          download onclick="trackDownload()">
         <i data-lucide="download" style="width:17px;height:17px"></i>
         <span data-es="Descargar" data-en="Download">Descargar</span>
@@ -682,7 +682,7 @@
       </div>
       <div class="apk-meta" data-es="Huawei · Samsung sin Play Store" data-en="Huawei · Samsung without Play Store">Huawei · Samsung sin Play Store</div>
       <a class="btn-dl-lite" id="dlLite"
-         href="https://github.com/LUANPELO/sticker_save/releases/latest/download/stickergrab-lite-v1.0.0.apk"
+         href="https://github.com/LUANPELO/stickergrab-releases/releases/latest/download/stickergrab-lite-v1.0.0.apk"
          download onclick="trackDownload()">
         <i data-lucide="download" style="width:17px;height:17px"></i>
         <span data-es="Descargar" data-en="Download">Descargar</span>
@@ -700,7 +700,7 @@
   </p>
   <p class="platform-note" style="margin-top:8px">
     <i data-lucide="github" style="width:14px;height:14px"></i>
-    <a href="https://github.com/LUANPELO/sticker_save/releases" target="_blank" rel="noopener"
+    <a href="https://github.com/LUANPELO/stickergrab-releases/releases" target="_blank" rel="noopener"
        style="color:var(--muted);text-decoration:none;"
        data-es="Ver todas las versiones en GitHub" data-en="See all releases on GitHub">Ver todas las versiones en GitHub</a>
   </p>
@@ -1103,7 +1103,7 @@
   <div class="footer-links">
     <a href="terminos/" data-es="Términos y condiciones" data-en="Terms &amp; Conditions">Términos y condiciones</a>
     <a href="privacidad/" data-es="Política de privacidad" data-en="Privacy Policy">Política de privacidad</a>
-    <a href="https://github.com/LUANPELO/sticker_save/releases" target="_blank" rel="noopener" data-es="GitHub Releases" data-en="GitHub Releases">GitHub Releases</a>
+    <a href="https://github.com/LUANPELO/stickergrab-releases/releases" target="_blank" rel="noopener" data-es="GitHub Releases" data-en="GitHub Releases">GitHub Releases</a>
     <a href="mailto:soporte@velxos.com" data-es="Contacto" data-en="Contact">Contacto</a>
   </div>
   <p class="footer-copy">© 2026 Velxos · StickerGrab</p>
@@ -1148,7 +1148,7 @@
     try {
       const ctrl = new AbortController();
       const tid = setTimeout(() => ctrl.abort(), 7000);
-      const r = await fetch('https://api.github.com/repos/LUANPELO/sticker_save/releases', {
+      const r = await fetch('https://api.github.com/repos/LUANPELO/stickergrab-releases/releases', {
         headers: { 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
         signal: ctrl.signal
       });
