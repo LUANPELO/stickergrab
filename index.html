@@ -408,42 +408,56 @@
     .tnav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); transition: all .2s; }
     .tnav-dot.active { background: var(--purple); width: 20px; border-radius: 4px; }
 
-    /* ── MOBILE TUTORIAL — mantiene 2 col con teléfono escalado ── */
+    /* ── MOBILE TUTORIAL ─────────────────────────────────────────
+       Teléfono escala al 52% (87×174px visual), contenido completo
+       visible hasta el botón Siguiente sin scroll.
+    ──────────────────────────────────────────────────────────── */
     @media (max-width: 700px) {
+      .install-section { padding: 40px 16px; }
+
       .tutorial-panel.active {
-        grid-template-columns: 108px 1fr;
-        gap: 14px;
+        grid-template-columns: 90px 1fr;
+        gap: 12px;
         align-items: start;
       }
-      /* El phone-wrap actúa de caja contenedora a tamaño real visual (63% de 168×336) */
+
+      /* phone-wrap: tamaño visual del teléfono escalado + overflow hidden */
       .phone-wrap {
-        width: 108px;
-        height: 212px;
-        overflow: visible;
-        flex-shrink: 0;
+        width: 90px;
+        height: 178px;   /* 336 × 0.53 */
+        overflow: hidden;
         position: relative;
+        flex-shrink: 0;
       }
+
+      /* La posición: absolute saca al phone-frame del flujo normal;
+         el phone-wrap lo contiene y lo recorta con overflow: hidden */
       .phone-frame {
-        transform: scale(0.63);
-        transform-origin: top left;
         position: absolute;
         top: 0; left: 0;
+        transform: scale(0.53);
+        transform-origin: top left;
       }
-      .tutorial-text h3      { font-size: .95rem; margin-bottom: 8px; }
-      .tutorial-text p       { font-size: .8rem; line-height: 1.6; margin-bottom: 10px; }
-      .tutorial-step-num     { width: 30px; height: 30px; font-size: 14px; margin-bottom: 8px; }
-      .tip-box               { padding: 8px 10px; gap: 7px; }
-      .tip-box p             { font-size: .76rem; }
-      .tip-box .tip-icon     { font-size: 14px; }
-      .tutorial-nav          { gap: 8px; margin-top: 14px; flex-wrap: wrap; }
-      .tnav-btn              { padding: 8px 12px; font-size: 12px; }
-      .tnav-dots             { gap: 5px; }
+
+      .tutorial-step-num { width: 24px; height: 24px; font-size: 12px; margin-bottom: 5px; }
+      .tutorial-text h3  { font-size: .84rem; line-height: 1.25; margin-bottom: 5px; }
+      .tutorial-text p   { font-size: .74rem; line-height: 1.45; margin-bottom: 6px; }
+      .tip-box           { padding: 6px 8px; gap: 5px; }
+      .tip-box p         { font-size: .68rem; line-height: 1.35; }
+      .tip-box .tip-icon { font-size: 11px; margin-top: 1px; }
+      .tutorial-nav      { gap: 6px; margin-top: 8px; flex-wrap: nowrap; }
+      .tnav-btn          { padding: 6px 10px; font-size: 11px; gap: 4px; }
+      .tnav-dots         { gap: 4px; }
+      .tnav-dot          { width: 5px; height: 5px; }
+      .tnav-dot.active   { width: 14px; }
+      .step-tabs         { width: 100%; }
+      .step-tab          { flex: 1; width: auto; }
     }
 
-    @media (max-width: 420px) {
-      .tutorial-panel.active { grid-template-columns: 90px 1fr; }
-      .phone-wrap            { width: 90px; height: 178px; }
-      .phone-frame           { transform: scale(0.53); }
+    @media (max-width: 400px) {
+      .tutorial-panel.active { grid-template-columns: 76px 1fr; gap: 10px; }
+      .phone-wrap            { width: 76px; height: 151px; }
+      .phone-frame           { transform: scale(0.45); }
     }
 
     /* ── SAFETY ──────────────────────────────────────── */
@@ -837,7 +851,7 @@
       <!-- ── STEP 4 ── -->
       <div class="tutorial-panel" id="step-4">
         <div class="phone-wrap">
-          <div class="phone-frame" style="position:relative">
+          <div class="phone-frame">
             <div class="phone-pill"></div>
             <div class="phone-screen">
               <div class="android-bar">
