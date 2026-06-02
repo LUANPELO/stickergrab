@@ -969,7 +969,7 @@
       </div>
       <div class="spec-card">
         <i data-lucide="cpu" style="width:24px;height:24px"></i>
-        <div><strong>arm64 / arm</strong><span data-es="Todos los procesadores" data-en="All processors">Todos los procesadores</span></div>
+        <div><strong translate="no">arm64 / arm</strong><span data-es="Todos los procesadores" data-en="All processors">Todos los procesadores</span></div>
       </div>
     </div>
   </div>
@@ -1005,9 +1005,8 @@
     document.querySelectorAll('.lang-btn').forEach(b =>
       b.classList.toggle('active', b.textContent === lang.toUpperCase())
     );
-    document.querySelectorAll('[data-es],[data-en]').forEach(el => {
-      const txt = el.getAttribute('data-' + lang);
-      if (txt) el.innerHTML = txt;
+    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+      el.innerHTML = el.getAttribute('data-' + lang);
     });
     lucide.createIcons();
   }
@@ -1017,20 +1016,27 @@
   // ── Download counter — GitHub Releases API ────────────────
   async function loadCounter() {
     const el = document.getElementById('dlCount');
+    const CACHE_KEY = 'sg_dl_count';
+    const TTL = 5 * 60 * 1000;
     try {
+      const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+      if (cached && Date.now() - cached.ts < TTL) { el.textContent = cached.val; return; }
       const r = await fetch('https://api.github.com/repos/LUANPELO/sticker_save/releases', {
         headers: { 'Accept': 'application/vnd.github.v3+json' }
       });
-      if (!r.ok) throw new Error();
+      if (!r.ok) throw new Error('status ' + r.status);
       const releases = await r.json();
       if (!Array.isArray(releases)) throw new Error();
       let total = 0;
       releases.forEach(rel => {
         (rel.assets || []).forEach(a => { total += (a.download_count || 0); });
       });
-      el.textContent = total > 0 ? total.toLocaleString() : '¡Sé el primero!';
+      const val = total > 0 ? total.toLocaleString() : '¡Sé el primero!';
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), val }));
+      el.textContent = val;
     } catch {
-      el.textContent = '—';
+      const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+      el.textContent = cached ? cached.val : '0';
     }
   }
   loadCounter();
@@ -1055,9 +1061,8 @@
     });
     // re-apply language to new panel
     const lang = localStorage.getItem(LANG_KEY) || 'es';
-    document.querySelectorAll('[data-es],[data-en]').forEach(el => {
-      const txt = el.getAttribute('data-' + lang);
-      if (txt) el.innerHTML = txt;
+    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+      el.innerHTML = el.getAttribute('data-' + lang);
     });
     lucide.createIcons();
   }

@@ -323,9 +323,8 @@
     localStorage.setItem(LANG_KEY, lang);
     document.documentElement.lang = lang;
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
-    document.querySelectorAll('[data-es],[data-en]').forEach(el => {
-      const txt = el.getAttribute('data-' + lang);
-      if (txt) el.innerHTML = txt;
+    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+      el.innerHTML = el.getAttribute('data-' + lang);
     });
     lucide.createIcons();
   }
