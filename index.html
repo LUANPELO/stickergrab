@@ -391,14 +391,15 @@
       display: flex; gap: 10px; align-items: flex-start;
     }
     .tip-box .tip-icon { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
-    /* logo flash al hacer click */
+    /* flash de cámara al hacer click en el logo hero */
     @keyframes logoSnap {
-      0%   { filter: brightness(1) scale(1); }
-      25%  { filter: brightness(0.5) scale(0.93); }
-      60%  { filter: brightness(1.6) scale(1.06); }
-      100% { filter: brightness(1) scale(1); }
+      0%   { transform: translateY(0) scale(1);    filter: brightness(1); }
+      15%  { transform: translateY(0) scale(0.91); filter: brightness(0.45); }
+      45%  { transform: translateY(0) scale(1.07); filter: brightness(2.2); }
+      70%  { transform: translateY(0) scale(1.02); filter: brightness(1.1); }
+      100% { transform: translateY(0) scale(1);    filter: brightness(1); }
     }
-    .nav-logo img.snap { animation: logoSnap .28s ease; }
+    .hero-logo.snap { animation: logoSnap .32s cubic-bezier(.2,.8,.4,1) !important; }
     .tip-box p { margin: 0; font-size: .88rem; color: var(--purple2); }
 
     .tutorial-nav { display: flex; align-items: center; gap: 12px; margin-top: 28px; }
@@ -525,8 +526,8 @@
 
 <!-- ── NAVBAR ──────────────────────────────────────────────── -->
 <nav>
-  <a class="nav-logo" href="#" onclick="snapLogo(this)">
-    <img src="assets/logo.png" alt="StickerGrab" id="navLogoImg" />
+  <a class="nav-logo" href="#">
+    <img src="assets/logo.png" alt="StickerGrab" />
     <span>StickerGrab</span>
   </a>
   <div class="lang-toggle">
@@ -542,7 +543,8 @@
     <i data-lucide="sparkles" style="width:14px;height:14px"></i>
     <span data-es="Nuevo · v1.0.0" data-en="New · v1.0.0">Nuevo · v1.0.0</span>
   </span>
-  <img class="hero-logo" src="assets/logo.png" alt="StickerGrab logo" />
+  <img class="hero-logo" src="assets/logo.png" alt="StickerGrab logo"
+       onclick="snapLogo(this)" style="cursor:pointer" />
   <h1 data-es="Captura stickers<br>de TikTok al instante" data-en="Capture TikTok stickers<br>in an instant">
     Captura stickers<br>de TikTok al instante
   </h1>
@@ -932,7 +934,7 @@
         <h3 data-es="Verificado con VirusTotal" data-en="Verified with VirusTotal">Verificado con VirusTotal</h3>
         <p data-es="VirusTotal analiza el archivo con más de 70 motores antivirus en tiempo real. Puedes comprobar el resultado tú mismo antes de instalar." data-en="VirusTotal analyzes the file with more than 70 antivirus engines in real time. You can check the result yourself before installing.">VirusTotal analiza el archivo con más de 70 motores antivirus. Puedes comprobar el resultado tú mismo.</p>
       </div>
-      <a class="vt-btn" href="#" target="_blank" rel="noopener">
+      <a class="vt-btn" href="https://www.virustotal.com/gui/file/ea3badfd27a043cbb8cebb4a90d6995043f4440de28fb63738cc3e596c866f9b" target="_blank" rel="noopener">
         <i data-lucide="external-link" style="width:16px;height:16px"></i>
         <span data-es="Ver análisis" data-en="View analysis">Ver análisis</span>
       </a>
@@ -993,27 +995,21 @@
   function playCameraSound() {
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const snapLen = Math.floor(ctx.sampleRate * 0.05);
-      const snapBuf = ctx.createBuffer(1, snapLen, ctx.sampleRate);
-      const snapData = snapBuf.getChannelData(0);
-      for (let i = 0; i < snapLen; i++)
-        snapData[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.008));
-      const snap = ctx.createBufferSource();
-      snap.buffer = snapBuf;
-      const gSnap = ctx.createGain();
-      gSnap.gain.setValueAtTime(0.55, ctx.currentTime);
-      gSnap.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
-      snap.connect(gSnap); gSnap.connect(ctx.destination);
-      const osc = ctx.createOscillator();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(900, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 0.09);
-      const gOsc = ctx.createGain();
-      gOsc.gain.setValueAtTime(0.28, ctx.currentTime);
-      gOsc.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.11);
-      osc.connect(gOsc); gOsc.connect(ctx.destination);
-      snap.start(); snap.stop(ctx.currentTime + 0.07);
-      osc.start(); osc.stop(ctx.currentTime + 0.12);
+      function tick(t, amp, dur) {
+        const len = Math.floor(ctx.sampleRate * dur);
+        const buf = ctx.createBuffer(1, len, ctx.sampleRate);
+        const d = buf.getChannelData(0);
+        for (let i = 0; i < len; i++)
+          d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * dur * 0.18));
+        const src = ctx.createBufferSource();
+        src.buffer = buf;
+        const g = ctx.createGain();
+        g.gain.value = amp;
+        src.connect(g); g.connect(ctx.destination);
+        src.start(t); src.stop(t + dur + 0.01);
+      }
+      tick(ctx.currentTime,        0.9,  0.022); // obturador abre
+      tick(ctx.currentTime + 0.08, 0.55, 0.016); // obturador cierra
     } catch(e) {}
   }
 
