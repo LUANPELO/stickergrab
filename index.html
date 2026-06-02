@@ -1139,10 +1139,14 @@
   async function loadCounter() {
     const el = document.getElementById('dlCount');
     const CACHE_KEY = 'sg_dl_count';
-    const TTL = 4 * 60 * 1000;
-    // Show stale cache immediately while re-fetching
+    const CACHE_VER  = 'v2'; // bump to bust old cache on repo change
+    const TTL = 60 * 1000;  // 1 minuto
     let cached = null;
-    try { cached = JSON.parse(localStorage.getItem(CACHE_KEY)); } catch {}
+    try {
+      const raw = JSON.parse(localStorage.getItem(CACHE_KEY));
+      if (raw && raw.ver === CACHE_VER) cached = raw;
+      else localStorage.removeItem(CACHE_KEY); // limpia caché de versión vieja
+    } catch {}
     if (cached) el.textContent = cached.val;
     if (cached && Date.now() - cached.ts < TTL) return;
     try {
@@ -1159,7 +1163,7 @@
       if (Array.isArray(data))
         data.forEach(rel => (rel.assets || []).forEach(a => { total += a.download_count | 0; }));
       const val = total.toLocaleString();
-      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), val })); } catch {}
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), val, ver: CACHE_VER })); } catch {}
       el.textContent = val;
     } catch {
       if (!cached) el.textContent = '0';
